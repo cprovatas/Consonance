@@ -8,6 +8,7 @@
 
 import Foundation
 import AppKit
+import Cocoa
 
 @IBDesignable
 class CPView : UIView {
@@ -42,8 +43,7 @@ class CPView : UIView {
         wantsLayer = true
         if layer == nil {
             layer = CALayer()
-        }
-        layer?.masksToBounds = true
+        }                                
     }
     
     override func draw(_ dirtyRect: NSRect) {

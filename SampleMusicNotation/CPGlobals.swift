@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+public struct CPGlobals {
+    
+    
+        
+    
+    
+}

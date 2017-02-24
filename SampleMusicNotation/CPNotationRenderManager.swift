@@ -24,21 +24,6 @@ final class CPNotationRender {
         return layer
     }
     
-    public class func drawFilledOval(inRect rect: CGRect) -> CPNoteHeadLayer {
-        let r = CGRect(x: 0, y: 0, width: rect.size.height * 0.6842105263, height: rect.size.height)
-        let ellipsePath = NSBezierPath(ovalIn: r)
-        ellipsePath.transform(using: AffineTransform(rotationInDegrees: -45, aroundCenterOfRect: r))
-        let shapeLayer = CPNoteHeadLayer()
-        shapeLayer.path = ellipsePath.cgPath
-        shapeLayer.fillColor = NSColor.black.cgColor
-        shapeLayer.strokeColor = NSColor.black.cgColor
-        shapeLayer.lineWidth = 5
-        shapeLayer.frame = CGRect(x: rect.origin.x, y: rect.origin.y, width: r.size.width, height: r.size.height)
-        
-        shapeLayer.endPoint = CGPoint(x: shapeLayer.frame.maxX + r.size.width * 0.16, y: rect.maxY - rect.size.height * 0.35)
-        return shapeLayer
-    }
-    
     public class func drawMeasure(inRect rect: CGRect) -> CPMeasureLayer {
         
         let path = NSBezierPath()
