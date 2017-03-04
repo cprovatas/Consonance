@@ -3,6 +3,8 @@ import Foundation
 open class CPGlyphJSONSerialization {
     //TODO: we probably want to have this json object present in memory as a singleton, so we don't read from a file everytime
     //TODO: we obviously should make this robust
+    typealias GlyphAnchorAttributes = Dictionary<String, [CGFloat]>
+        
     public class func getFormattedGlyphName(forUnicodeGlyphName name: CFString) -> String {
         let newName = (name as String).replacingOccurrences(of: "uni", with: "U+")
         let json = getJSON(fromJSONFileWithName: "glyphnames") as! Dictionary<String, Any>
@@ -17,18 +19,19 @@ open class CPGlyphJSONSerialization {
         return ""
     }
     
-    public class func getGlyphAnchorAttributes(fromFormattedGlyphName name: String) -> CPGlyphAnchorAttributes {
+    public class func getGlyphAnchorAttributes(fromFormattedGlyphName name: String) -> CPGlyphAnchorAttributes? {
         let json = getJSON(fromJSONFileWithName: "bravura_metadata") as! Dictionary<String, Any>
         let anchorAttributes = json["glyphsWithAnchors"] as! Dictionary<String, Any>
-        let properties = anchorAttributes[name] as! Dictionary<String, [CGFloat]>
-        return serializeAnchorAttributes(properties)
+        if let properties = anchorAttributes[name] as? GlyphAnchorAttributes {
+            return serializeAnchorAttributes(properties)
+        }
+        return nil
     }
     
-    private class func serializeAnchorAttributes(_ properties: Dictionary<String, [CGFloat]>) -> CPGlyphAnchorAttributes {
+    private class func serializeAnchorAttributes(_ properties: GlyphAnchorAttributes) -> CPGlyphAnchorAttributes {
         
         
-        var anchorAttributes = CPGlyphAnchorAttributes()
-        print(properties)
+        var anchorAttributes = CPGlyphAnchorAttributes()        
         anchorAttributes.splitStemUpSE = serialize(point: properties["splitStemUpSE"])        
         anchorAttributes.splitStemUpSW = serialize(point: properties["splitStemUpSW"])
         anchorAttributes.splitStemDownNE = serialize(point: properties["splitStemDownNE"])

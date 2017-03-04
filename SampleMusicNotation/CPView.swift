@@ -43,6 +43,9 @@ class CPView : UIView {
         wantsLayer = true
         if layer == nil {
             layer = CALayer()
+            layer!.shouldRasterize = true
+            layer!.contentsScale = CPGlobals.contentScaleFactor
+            layer!.rasterizationScale = CPGlobals.contentScaleFactor
         }                                
     }
     

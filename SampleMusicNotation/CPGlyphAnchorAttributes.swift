@@ -2,9 +2,8 @@ import Foundation
 
 public struct CPGlyphAnchorAttributes {
     
-    public init() {
-        self.init()
-    }
+    init() {}
+    
     // The exact position at which the bottom right-hand (south-east) corner
     // of an angled upward-pointing stem connecting the right-hand side of a
     // notehead to a vertical stem to its left should start, relative to the glyph origin,

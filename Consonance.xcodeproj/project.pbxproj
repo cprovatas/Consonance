@@ -8,20 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		1253CB689B80999B1CAC0023 /* Pods_ConsonanceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F391A494B73ED3E8267404E0 /* Pods_ConsonanceTests.framework */; };
+		3E2000221E6503E60093FB86 /* CPThreadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2000211E6503E60093FB86 /* CPThreadManager.swift */; };
+		3E2AA8381E67932E007CEA24 /* CPStemLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2AA8371E67932E007CEA24 /* CPStemLayer.swift */; };
 		3E2B70421E381C4100F54AA8 /* CPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2B70411E381C4100F54AA8 /* CPView.swift */; };
 		3E2B70441E39745B00F54AA8 /* CPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2B70431E39745B00F54AA8 /* CPViewController.swift */; };
 		3EB47A7E1E3D31FD000BFC8B /* CPMeasureLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB47A7D1E3D31FD000BFC8B /* CPMeasureLayer.swift */; };
-		3EB47A801E3D3889000BFC8B /* CPNoteLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB47A7F1E3D3889000BFC8B /* CPNoteLayer.swift */; };
+		3EB5B3031E623894008AF4C4 /* bravura_metadata.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5B3021E623894008AF4C4 /* bravura_metadata.json */; };
+		3EB5B3051E6238A7008AF4C4 /* classes.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5B3041E6238A7008AF4C4 /* classes.json */; };
+		3EB5B3071E6238BD008AF4C4 /* glyphnames.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5B3061E6238BD008AF4C4 /* glyphnames.json */; };
 		3EC365261E35853B0017B25E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC365251E35853B0017B25E /* AppDelegate.swift */; };
 		3EC365281E35853B0017B25E /* CPRenderingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC365271E35853B0017B25E /* CPRenderingViewController.swift */; };
 		3EC3652A1E35853B0017B25E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EC365291E35853B0017B25E /* Assets.xcassets */; };
 		3EC3652D1E35853B0017B25E /* RenderingWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EC3652B1E35853B0017B25E /* RenderingWindow.storyboard */; };
-		3EC365381E35853B0017B25E /* SampleMusicNotationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC365371E35853B0017B25E /* SampleMusicNotationTests.swift */; };
-		3EC365431E35853B0017B25E /* SampleMusicNotationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC365421E35853B0017B25E /* SampleMusicNotationUITests.swift */; };
-		3EC365561E3585DF0017B25E /* CPNotationRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC365551E3585DF0017B25E /* CPNotationRender.swift */; };
-		3EC3655A1E3586750017B25E /* Type Declarations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC365591E3586750017B25E /* Type Declarations.swift */; };
-		3EC3655C1E3586800017B25E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC3655B1E3586800017B25E /* Extensions.swift */; };
-		3EC3655E1E3586950017B25E /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC3655D1E3586950017B25E /* Globals.swift */; };
+		3EC365381E35853B0017B25E /* ConsonanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC365371E35853B0017B25E /* ConsonanceTests.swift */; };
+		3EC365431E35853B0017B25E /* ConsonanceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC365421E35853B0017B25E /* ConsonanceUITests.swift */; };
+		3EC365561E3585DF0017B25E /* CPNotationRenderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC365551E3585DF0017B25E /* CPNotationRenderManager.swift */; };
+		3EC3655A1E3586750017B25E /* CPTypeDeclarations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC365591E3586750017B25E /* CPTypeDeclarations.swift */; };
+		3EC3655C1E3586800017B25E /* CPExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC3655B1E3586800017B25E /* CPExtensions.swift */; };
+		3EC3655E1E3586950017B25E /* CPGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC3655D1E3586950017B25E /* CPGlobals.swift */; };
+		3EFAC94E1E5E6DFF00CDA40A /* CPGlyphJSONSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFAC94D1E5E6DFF00CDA40A /* CPGlyphJSONSerialization.swift */; };
+		3EFAC9501E5E6E2C00CDA40A /* CPGlyphAnchorAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFAC94F1E5E6E2C00CDA40A /* CPGlyphAnchorAttributes.swift */; };
+		3EFAC9521E5E6E8100CDA40A /* CPGlyphLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFAC9511E5E6E8100CDA40A /* CPGlyphLayer.swift */; };
+		3EFAC9551E5E6F8B00CDA40A /* CPFontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFAC9541E5E6F8B00CDA40A /* CPFontManager.swift */; };
 		49E7A4DB6EFB22A31AB52BB6 /* Pods_ConsonanceUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FC1EE1D3BFAF620BF5E1B27 /* Pods_ConsonanceUITests.framework */; };
 		A2D21D65B7E2CA3B48AE9C05 /* Pods_Consonance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A35C45B6A94E4ACA2CC17E6 /* Pods_Consonance.framework */; };
 /* End PBXBuildFile section */
@@ -46,10 +54,14 @@
 /* Begin PBXFileReference section */
 		122AF68C6392F0D7376CC9DA /* Pods-ConsonanceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsonanceTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ConsonanceTests/Pods-ConsonanceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1FC1EE1D3BFAF620BF5E1B27 /* Pods_ConsonanceUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConsonanceUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E2000211E6503E60093FB86 /* CPThreadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPThreadManager.swift; sourceTree = "<group>"; };
+		3E2AA8371E67932E007CEA24 /* CPStemLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPStemLayer.swift; sourceTree = "<group>"; };
 		3E2B70411E381C4100F54AA8 /* CPView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPView.swift; sourceTree = "<group>"; };
 		3E2B70431E39745B00F54AA8 /* CPViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPViewController.swift; sourceTree = "<group>"; };
 		3EB47A7D1E3D31FD000BFC8B /* CPMeasureLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPMeasureLayer.swift; sourceTree = "<group>"; };
-		3EB47A7F1E3D3889000BFC8B /* CPNoteLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPNoteLayer.swift; sourceTree = "<group>"; };
+		3EB5B3021E623894008AF4C4 /* bravura_metadata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bravura_metadata.json; sourceTree = "<group>"; };
+		3EB5B3041E6238A7008AF4C4 /* classes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = classes.json; sourceTree = "<group>"; };
+		3EB5B3061E6238BD008AF4C4 /* glyphnames.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = glyphnames.json; sourceTree = "<group>"; };
 		3EC365221E35853B0017B25E /* Consonance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Consonance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EC365251E35853B0017B25E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3EC365271E35853B0017B25E /* CPRenderingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPRenderingViewController.swift; sourceTree = "<group>"; };
@@ -57,15 +69,19 @@
 		3EC3652C1E35853B0017B25E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RenderingWindow.storyboard; sourceTree = "<group>"; };
 		3EC3652E1E35853B0017B25E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3EC365331E35853B0017B25E /* ConsonanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConsonanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3EC365371E35853B0017B25E /* SampleMusicNotationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleMusicNotationTests.swift; sourceTree = "<group>"; };
+		3EC365371E35853B0017B25E /* ConsonanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsonanceTests.swift; sourceTree = "<group>"; };
 		3EC365391E35853B0017B25E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3EC3653E1E35853B0017B25E /* ConsonanceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConsonanceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3EC365421E35853B0017B25E /* SampleMusicNotationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleMusicNotationUITests.swift; sourceTree = "<group>"; };
+		3EC365421E35853B0017B25E /* ConsonanceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsonanceUITests.swift; sourceTree = "<group>"; };
 		3EC365441E35853B0017B25E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3EC365551E3585DF0017B25E /* CPNotationRender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPNotationRender.swift; sourceTree = "<group>"; };
-		3EC365591E3586750017B25E /* Type Declarations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Type Declarations.swift"; sourceTree = "<group>"; };
-		3EC3655B1E3586800017B25E /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		3EC3655D1E3586950017B25E /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		3EC365551E3585DF0017B25E /* CPNotationRenderManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPNotationRenderManager.swift; sourceTree = "<group>"; };
+		3EC365591E3586750017B25E /* CPTypeDeclarations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPTypeDeclarations.swift; sourceTree = "<group>"; };
+		3EC3655B1E3586800017B25E /* CPExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPExtensions.swift; sourceTree = "<group>"; };
+		3EC3655D1E3586950017B25E /* CPGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPGlobals.swift; sourceTree = "<group>"; };
+		3EFAC94D1E5E6DFF00CDA40A /* CPGlyphJSONSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPGlyphJSONSerialization.swift; sourceTree = "<group>"; };
+		3EFAC94F1E5E6E2C00CDA40A /* CPGlyphAnchorAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPGlyphAnchorAttributes.swift; sourceTree = "<group>"; };
+		3EFAC9511E5E6E8100CDA40A /* CPGlyphLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPGlyphLayer.swift; sourceTree = "<group>"; };
+		3EFAC9541E5E6F8B00CDA40A /* CPFontManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPFontManager.swift; sourceTree = "<group>"; };
 		85495E0508C3B0F70384F2AE /* Pods-ConsonanceUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsonanceUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConsonanceUITests/Pods-ConsonanceUITests.release.xcconfig"; sourceTree = "<group>"; };
 		86EDAB82464A40A98765C6B5 /* Pods-Consonance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Consonance.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Consonance/Pods-Consonance.debug.xcconfig"; sourceTree = "<group>"; };
 		8A35C45B6A94E4ACA2CC17E6 /* Pods_Consonance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Consonance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,20 +119,70 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E2000201E6503DD0093FB86 /* CPFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				3E2000211E6503E60093FB86 /* CPThreadManager.swift */,
+			);
+			name = CPFoundation;
+			sourceTree = "<group>";
+		};
+		3E2000231E6650760093FB86 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
+			sourceTree = "<group>";
+		};
+		3E2000241E6650900093FB86 /* CPMeasure */ = {
+			isa = PBXGroup;
+			children = (
+				3EB47A7D1E3D31FD000BFC8B /* CPMeasureLayer.swift */,
+			);
+			name = CPMeasure;
+			sourceTree = "<group>";
+		};
+		3E2AA8391E67934F007CEA24 /* CPStem */ = {
+			isa = PBXGroup;
+			children = (
+				3E2AA8371E67932E007CEA24 /* CPStemLayer.swift */,
+			);
+			name = CPStem;
+			sourceTree = "<group>";
+		};
 		3E2B70401E381C3700F54AA8 /* CPKit */ = {
 			isa = PBXGroup;
 			children = (
 				3E2B70431E39745B00F54AA8 /* CPViewController.swift */,
 				3E2B70411E381C4100F54AA8 /* CPView.swift */,
+				3EC365511E35858F0017B25E /* Music Rendering */,
 			);
 			name = CPKit;
+			sourceTree = "<group>";
+		};
+		3EB5B3001E62387B008AF4C4 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				3EB5B3011E623887008AF4C4 /* Bravura */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		3EB5B3011E623887008AF4C4 /* Bravura */ = {
+			isa = PBXGroup;
+			children = (
+				3EB5B3021E623894008AF4C4 /* bravura_metadata.json */,
+				3EB5B3041E6238A7008AF4C4 /* classes.json */,
+				3EB5B3061E6238BD008AF4C4 /* glyphnames.json */,
+			);
+			name = Bravura;
 			sourceTree = "<group>";
 		};
 		3EC365191E35853B0017B25E = {
 			isa = PBXGroup;
 			children = (
-				3EC365241E35853B0017B25E /* SampleMusicNotation */,
-				3EC365361E35853B0017B25E /* SampleMusicNotationTests */,
+				3EC365241E35853B0017B25E /* Consonance */,
+				3EC365361E35853B0017B25E /* ConsonanceTests */,
 				3EC365411E35853B0017B25E /* SampleMusicNotationUITests */,
 				3EC365231E35853B0017B25E /* Products */,
 				6FBF70C69BDEBEB06C1694CA /* Pods */,
@@ -134,7 +200,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3EC365241E35853B0017B25E /* SampleMusicNotation */ = {
+		3EC365241E35853B0017B25E /* Consonance */ = {
 			isa = PBXGroup;
 			children = (
 				3EC365251E35853B0017B25E /* AppDelegate.swift */,
@@ -142,26 +208,27 @@
 				3EC365541E3585BE0017B25E /* View Controllers */,
 				3EC365531E3585B10017B25E /* Resources */,
 				3EC365521E35859C0017B25E /* Interfaces */,
-				3EC365571E3585F00017B25E /* Objects */,
 				3EC365501E35857C0017B25E /* Utility */,
 				3EC365581E3586520017B25E /* Misc */,
 			);
+			name = Consonance;
 			path = SampleMusicNotation;
 			sourceTree = "<group>";
 		};
-		3EC365361E35853B0017B25E /* SampleMusicNotationTests */ = {
+		3EC365361E35853B0017B25E /* ConsonanceTests */ = {
 			isa = PBXGroup;
 			children = (
-				3EC365371E35853B0017B25E /* SampleMusicNotationTests.swift */,
+				3EC365371E35853B0017B25E /* ConsonanceTests.swift */,
 				3EC365391E35853B0017B25E /* Info.plist */,
 			);
+			name = ConsonanceTests;
 			path = SampleMusicNotationTests;
 			sourceTree = "<group>";
 		};
 		3EC365411E35853B0017B25E /* SampleMusicNotationUITests */ = {
 			isa = PBXGroup;
 			children = (
-				3EC365421E35853B0017B25E /* SampleMusicNotationUITests.swift */,
+				3EC365421E35853B0017B25E /* ConsonanceUITests.swift */,
 				3EC365441E35853B0017B25E /* Info.plist */,
 			);
 			path = SampleMusicNotationUITests;
@@ -170,8 +237,8 @@
 		3EC365501E35857C0017B25E /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				3E2000201E6503DD0093FB86 /* CPFoundation */,
 				3E2B70401E381C3700F54AA8 /* CPKit */,
-				3EC365511E35858F0017B25E /* Music Rendering */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -179,9 +246,11 @@
 		3EC365511E35858F0017B25E /* Music Rendering */ = {
 			isa = PBXGroup;
 			children = (
-				3EC365551E3585DF0017B25E /* CPNotationRender.swift */,
-				3EB47A7D1E3D31FD000BFC8B /* CPMeasureLayer.swift */,
-				3EB47A7F1E3D3889000BFC8B /* CPNoteLayer.swift */,
+				3E2AA8391E67934F007CEA24 /* CPStem */,
+				3E2000241E6650900093FB86 /* CPMeasure */,
+				3EFAC9531E5E6F7B00CDA40A /* CPFontManager */,
+				3EFAC94C1E5E6DE700CDA40A /* CPGlyph */,
+				3EC365551E3585DF0017B25E /* CPNotationRenderManager.swift */,
 			);
 			name = "Music Rendering";
 			sourceTree = "<group>";
@@ -197,6 +266,7 @@
 		3EC365531E3585B10017B25E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3EB5B3001E62387B008AF4C4 /* Fonts */,
 				3EC365291E35853B0017B25E /* Assets.xcassets */,
 			);
 			name = Resources;
@@ -210,21 +280,33 @@
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
-		3EC365571E3585F00017B25E /* Objects */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Objects;
-			sourceTree = "<group>";
-		};
 		3EC365581E3586520017B25E /* Misc */ = {
 			isa = PBXGroup;
 			children = (
-				3EC365591E3586750017B25E /* Type Declarations.swift */,
-				3EC3655B1E3586800017B25E /* Extensions.swift */,
-				3EC3655D1E3586950017B25E /* Globals.swift */,
+				3EC365591E3586750017B25E /* CPTypeDeclarations.swift */,
+				3EC3655B1E3586800017B25E /* CPExtensions.swift */,
+				3EC3655D1E3586950017B25E /* CPGlobals.swift */,
 			);
 			name = Misc;
+			sourceTree = "<group>";
+		};
+		3EFAC94C1E5E6DE700CDA40A /* CPGlyph */ = {
+			isa = PBXGroup;
+			children = (
+				3EFAC94F1E5E6E2C00CDA40A /* CPGlyphAnchorAttributes.swift */,
+				3EFAC94D1E5E6DFF00CDA40A /* CPGlyphJSONSerialization.swift */,
+				3EFAC9511E5E6E8100CDA40A /* CPGlyphLayer.swift */,
+			);
+			name = CPGlyph;
+			sourceTree = "<group>";
+		};
+		3EFAC9531E5E6F7B00CDA40A /* CPFontManager */ = {
+			isa = PBXGroup;
+			children = (
+				3E2000231E6650760093FB86 /* New Group */,
+				3EFAC9541E5E6F8B00CDA40A /* CPFontManager.swift */,
+			);
+			name = CPFontManager;
 			sourceTree = "<group>";
 		};
 		6FBF70C69BDEBEB06C1694CA /* Pods */ = {
@@ -370,6 +452,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EC3652A1E35853B0017B25E /* Assets.xcassets in Resources */,
+				3EB5B3031E623894008AF4C4 /* bravura_metadata.json in Resources */,
+				3EB5B3051E6238A7008AF4C4 /* classes.json in Resources */,
+				3EB5B3071E6238BD008AF4C4 /* glyphnames.json in Resources */,
 				3EC3652D1E35853B0017B25E /* RenderingWindow.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -533,16 +618,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EC3655C1E3586800017B25E /* Extensions.swift in Sources */,
+				3E2000221E6503E60093FB86 /* CPThreadManager.swift in Sources */,
+				3EC3655C1E3586800017B25E /* CPExtensions.swift in Sources */,
 				3EC365281E35853B0017B25E /* CPRenderingViewController.swift in Sources */,
-				3EC3655E1E3586950017B25E /* Globals.swift in Sources */,
+				3EFAC9521E5E6E8100CDA40A /* CPGlyphLayer.swift in Sources */,
+				3EC3655E1E3586950017B25E /* CPGlobals.swift in Sources */,
 				3E2B70441E39745B00F54AA8 /* CPViewController.swift in Sources */,
+				3EFAC94E1E5E6DFF00CDA40A /* CPGlyphJSONSerialization.swift in Sources */,
 				3E2B70421E381C4100F54AA8 /* CPView.swift in Sources */,
-				3EC3655A1E3586750017B25E /* Type Declarations.swift in Sources */,
-				3EC365561E3585DF0017B25E /* CPNotationRender.swift in Sources */,
+				3EC3655A1E3586750017B25E /* CPTypeDeclarations.swift in Sources */,
+				3EC365561E3585DF0017B25E /* CPNotationRenderManager.swift in Sources */,
+				3EFAC9551E5E6F8B00CDA40A /* CPFontManager.swift in Sources */,
+				3EFAC9501E5E6E2C00CDA40A /* CPGlyphAnchorAttributes.swift in Sources */,
 				3EB47A7E1E3D31FD000BFC8B /* CPMeasureLayer.swift in Sources */,
-				3EB47A801E3D3889000BFC8B /* CPNoteLayer.swift in Sources */,
 				3EC365261E35853B0017B25E /* AppDelegate.swift in Sources */,
+				3E2AA8381E67932E007CEA24 /* CPStemLayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,7 +640,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EC365381E35853B0017B25E /* SampleMusicNotationTests.swift in Sources */,
+				3EC365381E35853B0017B25E /* ConsonanceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,7 +648,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EC365431E35853B0017B25E /* SampleMusicNotationUITests.swift in Sources */,
+				3EC365431E35853B0017B25E /* ConsonanceUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
