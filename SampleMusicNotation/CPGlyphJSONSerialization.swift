@@ -1,5 +1,6 @@
 import Foundation
 
+fileprivate let glyphCache = NSCache<NSString, AnyObject>()
 open class CPGlyphJSONSerialization {
     //TODO: we probably want to have this json object present in memory as a singleton, so we don't read from a file everytime
     //TODO: we obviously should make this robust
@@ -9,7 +10,7 @@ open class CPGlyphJSONSerialization {
         let newName = (name as String).replacingOccurrences(of: "uni", with: "U+")
         let json = getJSON(fromJSONFileWithName: "glyphnames") as! Dictionary<String, Any>
         
-        for (key, value) in json {
+        for (key, value) in json {            
             let codepoints = value as! Dictionary<String, String>
             if codepoints["codepoint"] == newName || (codepoints["alternateCodepoint"] != nil && codepoints["alternateCodepoint"] == newName) {
                 return key
@@ -20,8 +21,15 @@ open class CPGlyphJSONSerialization {
     }
     
     public class func getGlyphAnchorAttributes(fromFormattedGlyphName name: String) -> CPGlyphAnchorAttributes? {
-        let json = getJSON(fromJSONFileWithName: "bravura_metadata") as! Dictionary<String, Any>
-        let anchorAttributes = json["glyphsWithAnchors"] as! Dictionary<String, Any>
+        guard let json = getJSON(fromJSONFileWithName: "bravura_metadata") as? Dictionary<String, Any> else {
+            return nil
+        }
+        
+        guard let anchorAttributes = json["glyphsWithAnchors"] as? Dictionary<String, Any> else {
+            Swift.print("\(self.self) Error Function: '\(#function)' Line \(#line).  'glyphsWithAnchors' key not found")
+            return nil
+        }
+        
         if let properties = anchorAttributes[name] as? GlyphAnchorAttributes {
             return serializeAnchorAttributes(properties)
         }
@@ -66,10 +74,28 @@ open class CPGlyphJSONSerialization {
     }
     
     private class func getJSON(fromJSONFileWithName name: String) -> Any? {
-        //obviously, this is super unsafe
-        let path = Bundle.main.path(forResource: name, ofType: "json")!
-        let data = try! Data(contentsOf: URL(fileURLWithPath: path))
-        let json = try! JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+        
+        if let cachedJSON = glyphCache.object(forKey: name as NSString) {
+            return cachedJSON
+        }
+        
+        guard let path = Bundle.main.path(forResource: name, ofType: "json") else {
+            Swift.print("CPGlyphJSONSerialization Error Function: '\(#function)' Line \(#line).  Path for file not found")
+            return nil
+        }
+        
+        guard let data = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
+            Swift.print("\(self.self) Error Function: '\(#function)' Line \(#line).  Couldn't get the data from that path")
+            return nil
+        }
+        
+        guard let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) else {
+            Swift.print("\(self.self) Error Function: '\(#function)' Line \(#line).  JSON Couldn't be parsed at path")
+            return nil
+        }
+        
+        glyphCache.setObject(json as AnyObject, forKey: name as NSString)
+        
         return json
     }
     
