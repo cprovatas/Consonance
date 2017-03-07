@@ -12,8 +12,7 @@ import AppKit
 
 final class CPMeasureLayer : CAShapeLayer {
     
-    public var boundingNoteSpacingHeight : CGFloat = 0
-    public var fullNoteSectionHeight : CGFloat = 0
+    
     
     convenience init(frame: CGRect) {
         self.init()
@@ -64,7 +63,5 @@ final class CPMeasureLayer : CAShapeLayer {
         strokeColor = NSColor.black.cgColor
         lineWidth = 1
         self.frame = rect
-        boundingNoteSpacingHeight = spacing
-        fullNoteSectionHeight = spacing + 4
     }
 }

@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-final class CPStemLayer : CAShapeLayer {
+final class CPStemLayer : CPLayer {
     
     public var maxYPoint : CGPoint!
     public var minYPoint : CGPoint!
@@ -37,4 +37,27 @@ final class CPStemLayer : CAShapeLayer {
         fillColor = NSColor.yellow.cgColor
     }
     
+}
+
+enum CPStemLayerPosition : String {
+    case up = "up"
+    case down = "down"
+    case none = "none"
+    
+    init(rawValue: String) {
+        switch rawValue.lowercased() {
+        case "up":
+            self = .up
+            break
+        case "down":
+            self = .down
+            break
+            case "none":
+            self = .none
+            break
+        default:
+            self = .none
+            break
+        }
+    }
 }

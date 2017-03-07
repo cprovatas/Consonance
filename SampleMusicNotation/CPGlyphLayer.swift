@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-class CPGlyphLayer : CALayer {
+class CPGlyphLayer : CPLayer {
     
     public var glyphAsString : String?
     

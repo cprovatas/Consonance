@@ -12,6 +12,12 @@
 		3E2AA8381E67932E007CEA24 /* CPStemLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2AA8371E67932E007CEA24 /* CPStemLayer.swift */; };
 		3E2B70421E381C4100F54AA8 /* CPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2B70411E381C4100F54AA8 /* CPView.swift */; };
 		3E2B70441E39745B00F54AA8 /* CPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2B70431E39745B00F54AA8 /* CPViewController.swift */; };
+		3E42D17D1E6CF69200B10D5C /* CPLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42D17C1E6CF69200B10D5C /* CPLayer.swift */; };
+		3EAADD921E6E357000A10CE2 /* CPNoteLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAADD911E6E357000A10CE2 /* CPNoteLayer.swift */; };
+		3EAADD941E6E35C100A10CE2 /* CPPitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAADD931E6E35C100A10CE2 /* CPPitch.swift */; };
+		3EAADD971E6E35E300A10CE2 /* CPPartLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAADD961E6E35E300A10CE2 /* CPPartLayer.swift */; };
+		3EAADD9A1E6E36C200A10CE2 /* CPClefLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAADD991E6E36C200A10CE2 /* CPClefLayer.swift */; };
+		3EAADD9D1E6E399800A10CE2 /* CPMusicXMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAADD9C1E6E399800A10CE2 /* CPMusicXMLParser.swift */; };
 		3EB47A7E1E3D31FD000BFC8B /* CPMeasureLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB47A7D1E3D31FD000BFC8B /* CPMeasureLayer.swift */; };
 		3EB5B3031E623894008AF4C4 /* bravura_metadata.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5B3021E623894008AF4C4 /* bravura_metadata.json */; };
 		3EB5B3051E6238A7008AF4C4 /* classes.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5B3041E6238A7008AF4C4 /* classes.json */; };
@@ -58,6 +64,12 @@
 		3E2AA8371E67932E007CEA24 /* CPStemLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPStemLayer.swift; sourceTree = "<group>"; };
 		3E2B70411E381C4100F54AA8 /* CPView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPView.swift; sourceTree = "<group>"; };
 		3E2B70431E39745B00F54AA8 /* CPViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPViewController.swift; sourceTree = "<group>"; };
+		3E42D17C1E6CF69200B10D5C /* CPLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPLayer.swift; sourceTree = "<group>"; };
+		3EAADD911E6E357000A10CE2 /* CPNoteLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPNoteLayer.swift; sourceTree = "<group>"; };
+		3EAADD931E6E35C100A10CE2 /* CPPitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPPitch.swift; sourceTree = "<group>"; };
+		3EAADD961E6E35E300A10CE2 /* CPPartLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPPartLayer.swift; sourceTree = "<group>"; };
+		3EAADD991E6E36C200A10CE2 /* CPClefLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPClefLayer.swift; sourceTree = "<group>"; };
+		3EAADD9C1E6E399800A10CE2 /* CPMusicXMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPMusicXMLParser.swift; sourceTree = "<group>"; };
 		3EB47A7D1E3D31FD000BFC8B /* CPMeasureLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPMeasureLayer.swift; sourceTree = "<group>"; };
 		3EB5B3021E623894008AF4C4 /* bravura_metadata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bravura_metadata.json; sourceTree = "<group>"; };
 		3EB5B3041E6238A7008AF4C4 /* classes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = classes.json; sourceTree = "<group>"; };
@@ -127,13 +139,6 @@
 			name = CPFoundation;
 			sourceTree = "<group>";
 		};
-		3E2000231E6650760093FB86 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "New Group";
-			sourceTree = "<group>";
-		};
 		3E2000241E6650900093FB86 /* CPMeasure */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +163,40 @@
 				3EC365511E35858F0017B25E /* Music Rendering */,
 			);
 			name = CPKit;
+			sourceTree = "<group>";
+		};
+		3EAADD901E6E355F00A10CE2 /* CPNoteLayer */ = {
+			isa = PBXGroup;
+			children = (
+				3EAADD911E6E357000A10CE2 /* CPNoteLayer.swift */,
+				3EAADD931E6E35C100A10CE2 /* CPPitch.swift */,
+			);
+			name = CPNoteLayer;
+			sourceTree = "<group>";
+		};
+		3EAADD951E6E35D200A10CE2 /* CPPart */ = {
+			isa = PBXGroup;
+			children = (
+				3EAADD961E6E35E300A10CE2 /* CPPartLayer.swift */,
+			);
+			name = CPPart;
+			sourceTree = "<group>";
+		};
+		3EAADD981E6E36B500A10CE2 /* CPClefLayer */ = {
+			isa = PBXGroup;
+			children = (
+				3EAADD991E6E36C200A10CE2 /* CPClefLayer.swift */,
+			);
+			name = CPClefLayer;
+			sourceTree = "<group>";
+		};
+		3EAADD9B1E6E397300A10CE2 /* CPParsing */ = {
+			isa = PBXGroup;
+			children = (
+				3EFAC94D1E5E6DFF00CDA40A /* CPGlyphJSONSerialization.swift */,
+				3EAADD9C1E6E399800A10CE2 /* CPMusicXMLParser.swift */,
+			);
+			name = CPParsing;
 			sourceTree = "<group>";
 		};
 		3EB5B3001E62387B008AF4C4 /* Fonts */ = {
@@ -237,6 +276,7 @@
 		3EC365501E35857C0017B25E /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				3EAADD9B1E6E397300A10CE2 /* CPParsing */,
 				3E2000201E6503DD0093FB86 /* CPFoundation */,
 				3E2B70401E381C3700F54AA8 /* CPKit */,
 			);
@@ -246,6 +286,10 @@
 		3EC365511E35858F0017B25E /* Music Rendering */ = {
 			isa = PBXGroup;
 			children = (
+				3EAADD981E6E36B500A10CE2 /* CPClefLayer */,
+				3EAADD951E6E35D200A10CE2 /* CPPart */,
+				3EAADD901E6E355F00A10CE2 /* CPNoteLayer */,
+				3E42D17C1E6CF69200B10D5C /* CPLayer.swift */,
 				3E2AA8391E67934F007CEA24 /* CPStem */,
 				3E2000241E6650900093FB86 /* CPMeasure */,
 				3EFAC9531E5E6F7B00CDA40A /* CPFontManager */,
@@ -294,7 +338,6 @@
 			isa = PBXGroup;
 			children = (
 				3EFAC94F1E5E6E2C00CDA40A /* CPGlyphAnchorAttributes.swift */,
-				3EFAC94D1E5E6DFF00CDA40A /* CPGlyphJSONSerialization.swift */,
 				3EFAC9511E5E6E8100CDA40A /* CPGlyphLayer.swift */,
 			);
 			name = CPGlyph;
@@ -303,7 +346,6 @@
 		3EFAC9531E5E6F7B00CDA40A /* CPFontManager */ = {
 			isa = PBXGroup;
 			children = (
-				3E2000231E6650760093FB86 /* New Group */,
 				3EFAC9541E5E6F8B00CDA40A /* CPFontManager.swift */,
 			);
 			name = CPFontManager;
@@ -620,19 +662,25 @@
 			files = (
 				3E2000221E6503E60093FB86 /* CPThreadManager.swift in Sources */,
 				3EC3655C1E3586800017B25E /* CPExtensions.swift in Sources */,
+				3EAADD9A1E6E36C200A10CE2 /* CPClefLayer.swift in Sources */,
 				3EC365281E35853B0017B25E /* CPRenderingViewController.swift in Sources */,
 				3EFAC9521E5E6E8100CDA40A /* CPGlyphLayer.swift in Sources */,
 				3EC3655E1E3586950017B25E /* CPGlobals.swift in Sources */,
 				3E2B70441E39745B00F54AA8 /* CPViewController.swift in Sources */,
+				3EAADD9D1E6E399800A10CE2 /* CPMusicXMLParser.swift in Sources */,
 				3EFAC94E1E5E6DFF00CDA40A /* CPGlyphJSONSerialization.swift in Sources */,
 				3E2B70421E381C4100F54AA8 /* CPView.swift in Sources */,
+				3E42D17D1E6CF69200B10D5C /* CPLayer.swift in Sources */,
+				3EAADD971E6E35E300A10CE2 /* CPPartLayer.swift in Sources */,
 				3EC3655A1E3586750017B25E /* CPTypeDeclarations.swift in Sources */,
 				3EC365561E3585DF0017B25E /* CPNotationRenderManager.swift in Sources */,
 				3EFAC9551E5E6F8B00CDA40A /* CPFontManager.swift in Sources */,
 				3EFAC9501E5E6E2C00CDA40A /* CPGlyphAnchorAttributes.swift in Sources */,
+				3EAADD921E6E357000A10CE2 /* CPNoteLayer.swift in Sources */,
 				3EB47A7E1E3D31FD000BFC8B /* CPMeasureLayer.swift in Sources */,
 				3EC365261E35853B0017B25E /* AppDelegate.swift in Sources */,
 				3E2AA8381E67932E007CEA24 /* CPStemLayer.swift in Sources */,
+				3EAADD941E6E35C100A10CE2 /* CPPitch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
