@@ -13,6 +13,23 @@ import Cocoa
 class CPPartLayer : CPLayer {
     
     public var id : String = "P1"
-    public var measures : [CPMeasureLayer] = []
+    public var measures : [CPMeasureLayer] = [] {
+        didSet {
+            self.sublayers = nil
+        }
+    }
     
+    init(id: String, measure: [CPMeasureLayer]) {
+        super.init()
+        self.id = id
+        self.measures = measure
+    }
+    
+    private func layoutMeasures() {
+        //TODO : provide some sort of layout system for laying out the measures here, need to research default rules... etc
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 }

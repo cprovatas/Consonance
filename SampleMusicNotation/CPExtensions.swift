@@ -30,11 +30,24 @@ public extension NSBezierPath {
 }
 
 public extension AffineTransform {
-    
     public init(rotationInDegrees degrees: CGFloat, aroundCenterOfRect rect: CGRect)  {
         self.init()
         self.translate(x: rect.origin.x + rect.size.width * 0.5, y: rect.origin.y + rect.size.height * 0.5)
         self.rotate(byDegrees: degrees)
         self.translate(x: -(rect.origin.x + rect.size.width * 0.5), y: -(rect.origin.y + rect.size.height * 0.5))
+    }
+}
+
+public extension String {
+    public var cgFloat : CGFloat {
+        get {
+            return CGFloat(NumberFormatter().number(from: self) ?? 0.0)
+        }
+    }
+    
+    public var int : Int {
+        get {
+            return Int(NumberFormatter().number(from: self) ?? 0)
+        }
     }
 }

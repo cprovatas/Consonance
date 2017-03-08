@@ -22,4 +22,33 @@ enum CPPitchLetter : String {
     case e = "E"
     case f = "F"
     case g = "G"
+    
+    init(rawValue: String) {
+        switch rawValue.lowercased() {
+        case "a":
+            self = .a
+            break
+        case "b":
+            self = .b
+            break
+        case "c":
+            self = .c
+            break
+        case "d":
+            self = .d
+            break
+        case "e":
+            self = .e
+            break
+        case "f":
+            self = .f
+            break
+        case "g":
+            self = .g
+            break
+        default:
+            self = .a
+            break
+        }
+    }
 }
