@@ -51,4 +51,23 @@ enum CPPitchLetter : String {
             break
         }
     }
+    
+    public var intValue : Int {
+        switch self {
+        case .a:
+            return 5
+        case .b:
+            return 6
+        case .c:
+            return 0
+        case .d:
+            return 1
+        case .e:
+            return 2
+        case .f:
+            return 3
+        case .g:
+            return 4
+        }
+    }
 }

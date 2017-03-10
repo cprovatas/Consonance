@@ -17,6 +17,13 @@ class CPNoteLayer : CPGlyphLayer {
     public var voice : Int!
     public var type : CPNoteLayerType!
     public var stemPosition : CPStemLayerPosition!
+    public var explicitXPosition : CGFloat?
+    
+    public var shouldHaveStem : Bool {
+        get {
+            return type.shouldHaveStem && stemPosition != .none
+        }
+    }
     
     convenience init(pitches: [CPPitch], noteDuration: Int, voice: Int, type: CPNoteLayerType, stemPosition: CPStemLayerPosition) {
         self.init()
@@ -36,6 +43,35 @@ enum CPNoteLayerType : String {
     case quarter = "quarter"
     case eighth = "eighth"
     case sixteenth = "sixteenth"
+    
+    public var glyph : String {
+        get {
+            switch self {
+            case .whole:
+                return ""
+            case .half:
+                return ""
+            case .quarter:
+                return ""
+            case .eighth:
+                return ""
+            case .sixteenth:
+                return ""
+            }
+        }
+    }
+    
+    public var shouldHaveFlag : Bool {
+        get {
+            return self == .eighth || self == .sixteenth
+        }
+    }
+    
+    public var shouldHaveStem : Bool {
+        get {
+            return self != .whole
+        }
+    }
     
     init(rawValue: String) {
         switch rawValue.lowercased() {
@@ -61,21 +97,4 @@ enum CPNoteLayerType : String {
     }
 }
 
-extension CPNoteLayerType {
-    public var glyph : String {
-        get {
-            switch self {
-            case .whole:
-                return ""
-            case .half:
-                return ""
-            case .quarter:
-                return ""
-            case .eighth:
-                return ""
-            case .sixteenth:
-                return ""                
-            }
-        }
-    }
-}
+

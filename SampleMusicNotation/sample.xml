@@ -103,24 +103,24 @@
           <beat-type>4</beat-type>
         </time>
         <clef>
-          <sign>F</sign>
+          <sign>D</sign>
           <line>4</line>
         </clef>
       </attributes>
       <sound tempo="120"/>
       <note default-x="300">
         <pitch>
-          <step>F</step>
+          <step>A</step>
           <octave>4</octave>
         </pitch>
         <duration>2</duration>
         <voice>1</voice>
-        <type>half</type>
+        <type>quarter</type>
         <stem default-y="0">up</stem>
       </note>
       <note default-x="288">
         <pitch>
-          <step>G</step>
+          <step>E</step>
           <octave>4</octave>
         </pitch>
         <duration>2</duration>
@@ -140,8 +140,8 @@
       </note>
       <note default-x="698">
         <pitch>
-          <step>B</step>
-          <octave>4</octave>
+          <step>C</step>
+          <octave>3</octave>
         </pitch>
         <duration>2</duration>
         <voice>1</voice>

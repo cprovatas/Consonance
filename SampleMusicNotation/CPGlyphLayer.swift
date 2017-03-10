@@ -11,7 +11,11 @@ import Cocoa
 
 class CPGlyphLayer : CPLayer {
     
-    public var glyphAsString : String?
+    public var glyphAsString : String? {
+        didSet {
+            setUpAttributes()
+        }
+    }
     
     public var anchorAttributes : CPGlyphAnchorAttributes?
     public var glyphName : String?
@@ -26,16 +30,13 @@ class CPGlyphLayer : CPLayer {
     override var frame: CGRect {
         didSet {
             setUpAttributes()
+            setNeedsDisplay()
         }
     }
     
     convenience init(glyphAsString: String) {
         self.init()
         self.glyphAsString = glyphAsString
-        
-        shouldRasterize = true
-        contentsScale = CPGlobals.contentScaleFactor
-        rasterizationScale = CPGlobals.contentScaleFactor
         setNeedsDisplay()
     }
     
@@ -55,25 +56,22 @@ class CPGlyphLayer : CPLayer {
         newFont = NSFont(name: CPFontManager.currentFont.familyName!, size: getFontSize(toFitRect: frame, fromGlyphRectWhereFontSizeEqualsOne: rect))!
         self.fontSize = newFont.pointSize
         let newRect = CTFontGetBoundingRectsForGlyphs(newFont, .horizontal, glyphs, characterFrames, len)
-        // Swift.print(newRect)
-        //#MARK - convert to our coordinate space
         
+        //#MARK - convert to our coordinate space
         let points = [CGPoint(x: (frame.size.width * 0.5) - newRect.width * 0.5 - newRect.origin.x, y: (frame.size.height * 0.5) - (newRect.height * 0.5) - newRect.origin.y)]
         self.glyphRect = CGRect(origin: points.first!, size: newRect.size)
         
-        //  let points = [CGPoint.zero]
         //  let points = [CGPoint(x: 0, y: (frame.size.height * 0.5) - (newRect.height * 0.5) - newRect.origin.y)]
         let rawPointer = UnsafeRawPointer(points)
         pointer = rawPointer.assumingMemoryBound(to: CGPoint.self)
-        
     }
+    
     override func draw(in ctx: CGContext) {
         
-//        defer {
-//            free(characters)
-//            free(characterFrames)
-//            free(glyphs)
-//        }
+        shouldRasterize = true
+        contentsScale = CPGlobals.contentScaleFactor
+        rasterizationScale = CPGlobals.contentScaleFactor
+
         setUpAttributes()
         ctx.saveGState()
         CTFontDrawGlyphs(newFont, glyphs, pointer, len, ctx)

@@ -16,17 +16,24 @@ class CPPartLayer : CPLayer {
     public var measures : [CPMeasureLayer] = [] {
         didSet {
             self.sublayers = nil
+            layoutMeasures()
         }
     }
-    
-    init(id: String, measure: [CPMeasureLayer]) {
+
+    init(id: String, measure: [CPMeasureLayer], frame: CGRect) {
         super.init()
         self.id = id
         self.measures = measure
+        self.frame = CGRect(x: frame.width * 0.25 , y: frame.height * 0.9, width: frame.width * 0.5, height: frame.height * 0.5)
+        layoutMeasures()
     }
     
     private func layoutMeasures() {
         //TODO : provide some sort of layout system for laying out the measures here, need to research default rules... etc
+        for measure in measures {
+            measure.frame.size.height = self.frame.height
+            addSublayer(measure)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

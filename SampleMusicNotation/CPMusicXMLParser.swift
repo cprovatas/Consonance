@@ -24,8 +24,8 @@ final class CPMusicXMLParser {
         
         for part in parts {
             let tempPart = CPPartLayer(id: part.element?.value(ofAttribute: "id") ?? "P1",
-                                       measure: parse(measures: part["measure"], layer))
-            tempPart.frame = layer.frame
+                                       measure: parse(measures: part["measure"], layer), frame: layer.frame)
+            
             layer.addSublayer(tempPart)
         }
         
@@ -35,10 +35,10 @@ final class CPMusicXMLParser {
         var theMeasures : [CPMeasureLayer] = []
         //TODO: other measure formatting stuff :)
         for measure in measures {
-            let width = (measure.element?.value(ofAttribute: "width") ?? "\(layer.frame.width)").cgFloat
-            var aMeasure = CPMeasureLayer()
+            let aMeasure = CPMeasureLayer()
             aMeasure.notes = parse(notes: measure["note"], layer)
-            aMeasure.frame.size.width = width
+            aMeasure.frame.size.width = (measure.element?.value(ofAttribute: "width") ?? "\(layer.frame.width)").cgFloat
+            theMeasures.append(aMeasure)
         }
         return theMeasures
     }
@@ -46,14 +46,14 @@ final class CPMusicXMLParser {
     private class func parse(notes: XMLIndexer, _ layer: CALayer) -> [CPNoteLayer] {
         var notesArr : [CPNoteLayer] = []
         for n in notes {
-            let note = CPNoteLayer(pitches: parse(pitches: n["pitches"]),
+            let note = CPNoteLayer(pitches: parse(pitches: n["pitch"]),
                                    noteDuration: n["duration"].element?.text?.int ?? 0,
                                    voice: n["voice"].element?.text?.int ?? 0,
                                    type: CPNoteLayerType(rawValue: n["type"].element?.text ?? "quarter"),
                                    stemPosition: CPStemLayerPosition(rawValue: n["position"].element?.text ?? "none"))
             
             //TODO: xPosition
-            //let xPosition = note.element?.value(ofAttribute: "default-x") ?? "\(layer.frame.)"
+            note.explicitXPosition = (n.element?.value(ofAttribute: "default-x") ?? "").cgFloat
             notesArr.append(note)
         }
         

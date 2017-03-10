@@ -18,7 +18,6 @@
 		3EAADD971E6E35E300A10CE2 /* CPPartLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAADD961E6E35E300A10CE2 /* CPPartLayer.swift */; };
 		3EAADD9A1E6E36C200A10CE2 /* CPClefLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAADD991E6E36C200A10CE2 /* CPClefLayer.swift */; };
 		3EAADD9D1E6E399800A10CE2 /* CPMusicXMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAADD9C1E6E399800A10CE2 /* CPMusicXMLParser.swift */; };
-		3EAADDA01E6E3EA800A10CE2 /* sample.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3EAADD9F1E6E3EA800A10CE2 /* sample.xml */; };
 		3EB47A7E1E3D31FD000BFC8B /* CPMeasureLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB47A7D1E3D31FD000BFC8B /* CPMeasureLayer.swift */; };
 		3EB5B3031E623894008AF4C4 /* bravura_metadata.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5B3021E623894008AF4C4 /* bravura_metadata.json */; };
 		3EB5B3051E6238A7008AF4C4 /* classes.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5B3041E6238A7008AF4C4 /* classes.json */; };
@@ -33,6 +32,7 @@
 		3EC3655A1E3586750017B25E /* CPTypeDeclarations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC365591E3586750017B25E /* CPTypeDeclarations.swift */; };
 		3EC3655C1E3586800017B25E /* CPExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC3655B1E3586800017B25E /* CPExtensions.swift */; };
 		3EC3655E1E3586950017B25E /* CPGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC3655D1E3586950017B25E /* CPGlobals.swift */; };
+		3EF2A13E1E7228F600F6D166 /* sample.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3EF2A13D1E7228F600F6D166 /* sample.xml */; };
 		3EFAC94E1E5E6DFF00CDA40A /* CPGlyphJSONSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFAC94D1E5E6DFF00CDA40A /* CPGlyphJSONSerialization.swift */; };
 		3EFAC9501E5E6E2C00CDA40A /* CPGlyphAnchorAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFAC94F1E5E6E2C00CDA40A /* CPGlyphAnchorAttributes.swift */; };
 		3EFAC9521E5E6E8100CDA40A /* CPGlyphLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFAC9511E5E6E8100CDA40A /* CPGlyphLayer.swift */; };
@@ -71,7 +71,6 @@
 		3EAADD961E6E35E300A10CE2 /* CPPartLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPPartLayer.swift; sourceTree = "<group>"; };
 		3EAADD991E6E36C200A10CE2 /* CPClefLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPClefLayer.swift; sourceTree = "<group>"; };
 		3EAADD9C1E6E399800A10CE2 /* CPMusicXMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPMusicXMLParser.swift; sourceTree = "<group>"; };
-		3EAADD9F1E6E3EA800A10CE2 /* sample.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sample.xml; sourceTree = "<group>"; };
 		3EB47A7D1E3D31FD000BFC8B /* CPMeasureLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPMeasureLayer.swift; sourceTree = "<group>"; };
 		3EB5B3021E623894008AF4C4 /* bravura_metadata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bravura_metadata.json; sourceTree = "<group>"; };
 		3EB5B3041E6238A7008AF4C4 /* classes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = classes.json; sourceTree = "<group>"; };
@@ -92,6 +91,7 @@
 		3EC365591E3586750017B25E /* CPTypeDeclarations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPTypeDeclarations.swift; sourceTree = "<group>"; };
 		3EC3655B1E3586800017B25E /* CPExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPExtensions.swift; sourceTree = "<group>"; };
 		3EC3655D1E3586950017B25E /* CPGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPGlobals.swift; sourceTree = "<group>"; };
+		3EF2A13D1E7228F600F6D166 /* sample.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sample.xml; sourceTree = "<group>"; };
 		3EFAC94D1E5E6DFF00CDA40A /* CPGlyphJSONSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPGlyphJSONSerialization.swift; sourceTree = "<group>"; };
 		3EFAC94F1E5E6E2C00CDA40A /* CPGlyphAnchorAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPGlyphAnchorAttributes.swift; sourceTree = "<group>"; };
 		3EFAC9511E5E6E8100CDA40A /* CPGlyphLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPGlyphLayer.swift; sourceTree = "<group>"; };
@@ -204,7 +204,7 @@
 		3EAADD9E1E6E3EA100A10CE2 /* XML */ = {
 			isa = PBXGroup;
 			children = (
-				3EAADD9F1E6E3EA800A10CE2 /* sample.xml */,
+				3EF2A13D1E7228F600F6D166 /* sample.xml */,
 			);
 			name = XML;
 			sourceTree = "<group>";
@@ -505,9 +505,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EC3652A1E35853B0017B25E /* Assets.xcassets in Resources */,
-				3EAADDA01E6E3EA800A10CE2 /* sample.xml in Resources */,
 				3EB5B3031E623894008AF4C4 /* bravura_metadata.json in Resources */,
 				3EB5B3051E6238A7008AF4C4 /* classes.json in Resources */,
+				3EF2A13E1E7228F600F6D166 /* sample.xml in Resources */,
 				3EB5B3071E6238BD008AF4C4 /* glyphnames.json in Resources */,
 				3EC3652D1E35853B0017B25E /* RenderingWindow.storyboard in Resources */,
 			);

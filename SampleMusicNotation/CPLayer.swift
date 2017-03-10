@@ -9,4 +9,16 @@
 import Foundation
 import Cocoa
 
-class CPLayer : CAShapeLayer {}
+class CPLayer : CAShapeLayer {
+    
+    override init() {
+        super.init()
+        shouldRasterize = true
+        rasterizationScale = CPGlobals.contentScaleFactor
+        contentsScale = CPGlobals.contentScaleFactor
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+}
