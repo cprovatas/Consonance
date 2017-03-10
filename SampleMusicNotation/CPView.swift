@@ -40,12 +40,13 @@ class CPView : UIView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        wantsLayer = true
+        
         if layer == nil {
-            layer = CALayer()
-            layer!.shouldRasterize = true
+            layer = TEstLayer()
+            layerContentsRedrawPolicy = .never
             layer!.contentsScale = CPGlobals.contentScaleFactor
-            layer!.rasterizationScale = CPGlobals.contentScaleFactor
+            layer!.masksToBounds = false
+            layer!.drawsAsynchronously = true
         }                                
     }
     
@@ -55,3 +56,65 @@ class CPView : UIView {
         NSRectFill(bounds)
     }
 }
+
+class TEstLayer : CALayer {
+    
+   
+    override func render(in ctx: CGContext) {
+      //  super.render(in: ctx)
+    }
+    
+    override func resize(withOldSuperlayerSize size: CGSize) {
+        
+    }
+    
+    override func draw(in ctx: CGContext) {
+    }
+    override func resizeSublayers(withOldSize size: CGSize) {
+      //  super.resizeSublayers(withOldSize: size)
+    }
+    
+    override func setNeedsLayout() {
+        
+    }
+    
+    override func setNeedsDisplay() {
+        
+    }
+    
+    override func setNeedsDisplayIn(_ r: CGRect) {
+        
+    }
+    
+    override func layoutSublayers() {
+        
+    }
+    
+    override func layoutIfNeeded() {
+        
+    }
+    
+    override func displayIfNeeded() {
+        
+    }
+    
+    override func display() {
+        
+    }
+    
+    override func needsLayout() -> Bool {
+        return false
+    }
+    
+    override func needsDisplay() -> Bool {
+        return false
+    }
+    
+    override var needsDisplayOnBoundsChange: Bool{
+        get {
+            return false
+        }set { }
+    }
+
+}
+

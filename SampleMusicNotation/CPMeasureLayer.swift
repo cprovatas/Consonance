@@ -89,10 +89,9 @@ final class CPMeasureLayer : CPLayer {
     }
     
     private func layout(_ frame: CGRect) {
-        
-        shouldRasterize = true
+              
         contentsScale = CPGlobals.contentScaleFactor
-        rasterizationScale = CPGlobals.contentScaleFactor
+        masksToBounds = false
         
         let rect = frame
         let path = NSBezierPath()

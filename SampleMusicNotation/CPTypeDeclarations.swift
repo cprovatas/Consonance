@@ -11,14 +11,3 @@ import AppKit
 
 typealias UIViewController = NSViewController
 typealias UIView = NSView
-
-//perhaps we can include a specific 'pitch' type. ie enums to determine notes or something
-
-enum CPDuration {
-    case sixteenth
-    case eigth
-    case quarter
-    case half
-    case whole
-}
-

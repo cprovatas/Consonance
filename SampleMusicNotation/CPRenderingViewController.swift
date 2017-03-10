@@ -10,7 +10,7 @@ import Cocoa
 
 class CPRenderingViewController: CPViewController {
         
-    @IBOutlet weak var renderingView: CPView!    
+    @IBOutlet weak var renderingView: CPView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +18,9 @@ class CPRenderingViewController: CPViewController {
         
         let path = Bundle.main.path(forResource: "sample", ofType: "xml")!
         let url = URL(fileURLWithPath: path)
+        
         CPMusicXMLParser.renderMusic(onRenderingLayer: renderingView.layer!, fromURL: url)
+        
         
     }
     

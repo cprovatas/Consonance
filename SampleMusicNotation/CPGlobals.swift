@@ -10,8 +10,6 @@ import Foundation
 
 public struct CPGlobals {
     
-    static var contentScaleFactor : CGFloat = 3.0
+    static var contentScaleFactor : CGFloat = 15.0
         
-    
-    
 }

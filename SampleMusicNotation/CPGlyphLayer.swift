@@ -34,6 +34,7 @@ class CPGlyphLayer : CPLayer {
         }
     }
     
+     
     convenience init(glyphAsString: String) {
         self.init()
         self.glyphAsString = glyphAsString
@@ -41,6 +42,9 @@ class CPGlyphLayer : CPLayer {
     }
     
     private func setUpAttributes() {
+        
+        contentsScale = CPGlobals.contentScaleFactor
+        masksToBounds = false
         len = glyphAsString!.characters.count
         let characters = UnsafeMutablePointer<UniChar>.allocate(capacity: len)
         let characterFrames =  UnsafeMutablePointer<CGRect>.allocate(capacity: 1)
@@ -67,16 +71,13 @@ class CPGlyphLayer : CPLayer {
     }
     
     override func draw(in ctx: CGContext) {
-        
-        shouldRasterize = true
-        contentsScale = CPGlobals.contentScaleFactor
-        rasterizationScale = CPGlobals.contentScaleFactor
-
+        Swift.print("\(self.self) Function: '\(#function)' Line \(#line).")
         setUpAttributes()
         ctx.saveGState()
         CTFontDrawGlyphs(newFont, glyphs, pointer, len, ctx)
         ctx.restoreGState()        
     }
+    
     
     private func setGlyphs(_ glyph: CGGlyph) {
         guard let fontName = CPFontManager.currentFont.familyName else {
