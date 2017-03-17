@@ -9,26 +9,36 @@
 import Foundation
 import AppKit
 
-
+//TODO: Clefs are next :)
 final class CPMeasureLayer : CPLayer {
     
     public var number : Int!
+    public var clef : CPClefLayer?
     public var notes : [CPNoteLayer] = [] {
         didSet {
-            layoutNotes()
+            layout(frame)
         }
-    }
+    }        
     
     override var frame: CGRect {
         didSet {
-            layout(self.frame)
-            layoutNotes()
+            layout(frame)
         }
     }
     
-    convenience init(frame: CGRect) {
-        self.init()
-        layout(frame)
+    private func layoutClef() {
+        if (number != nil && number != 1) || clef == nil { return } //TODO: this probably is not the best way for now, but we need to learn how musicxml handles the redeclaration of measures etc...
+        let h = frame.height
+        clef!.frame.size = frame.size * 4
+      //  clef!.frame.origin = NSPoint(x: -clef!.frame.width * 0.5, y: (-clef!.frame.height * 0.5)  + clef!.glyphRect!.height * 0.5)
+        Swift.print(clef!.glyphRect)
+        clef!.frame.origin = CGPoint(x: -1500, y: -366)
+        clef!.frame.origin.y -= (frame.size.height / 8) - 7
+        clef!.borderWidth = 5
+        
+        addSublayer(clef!)
+        //Optional((1746.84310276196, 422.288872191222, 158.313794476077, 413.924608473909))
+        //Optional((1746.84310276196, 448.203332596532, 158.313794476077, 465.753529284529))
     }
     
     private func layoutNotes() {
@@ -43,7 +53,7 @@ final class CPMeasureLayer : CPLayer {
             
             if note.shouldHaveStem {
                 layoutStem(forNote: note)
-                if note.type.shouldHaveFlag {
+                if note.durationType.shouldHaveFlag {
                     layoutFlags(forNote: note)
                 }
             }
@@ -54,24 +64,27 @@ final class CPMeasureLayer : CPLayer {
     /* measure layer should manage this since it needs to connect separate notes depending on context */
     /* we will probably make a class out of this later as it gets more involved...                    */
     private func layoutFlags(forNote note: CPNoteLayer) {
-        let flag = CPGlyphLayer(glyphAsString: "")
+        
+        if note.stem == nil { return }
+        
+        let flag = CPFlagLayer(duration: note.durationType)
         let point = CGPoint(x: note.glyphRect!.origin.x + ((note.anchorAttributes!.stemUpSE!.x * note.fontSize!) / 4), y: (note.glyphRect!.origin.y + (note.anchorAttributes!.stemUpSE!.y * note.fontSize!) / 4))
         let fr = bounds
         flag.frame = CGRect(x: note.glyphRect!.width + note.frame.origin.x, y: 0, width: fr.width, height: fr.height - fr.height / 6)
         
         flag.frame.origin.x -= abs(flag.glyphRect!.maxX - note.glyphRect!.maxX)
         flag.frame.origin.x -= 2.5
-        //TODO pitch calculation
-       // flag.frame.origin.y = (note.convert(stem.maxYPoint, to: self).y - (flag.frame.height - ((flag.frame.height - flag.glyphRect!.height) * 0.5)))
+        
+        flag.frame.origin.y = (note.convert(note.stem!.maxYPoint, to: self).y - (flag.frame.height - ((flag.frame.height - flag.glyphRect!.height) * 0.5)))
         
         addSublayer(flag)
     }
     
     private func layoutStem(forNote note: CPNoteLayer) {
-        //TODO : eights aren't working
+        
         let point = CGPoint(x: note.glyphRect!.origin.x + ((note.anchorAttributes!.stemUpSE!.x * note.fontSize!) / 4), y: (note.glyphRect!.origin.y + (note.anchorAttributes!.stemUpSE!.y * note.fontSize!) / 4))
-        let stem = CPStemLayer(fromPoint: point, toYPosition: point.y + (frame.height / 4) * 3.25)
-        note.addSublayer(stem)
+        note.stem = CPStemLayer(fromPoint: point, toYPosition: point.y + (frame.height / 4) * 3.25)
+        note.addSublayer(note.stem!)
     }
     
     private func yPosition(pitches: [CPPitch]) -> CGFloat {
@@ -83,8 +96,7 @@ final class CPMeasureLayer : CPLayer {
         let initialPitch = pitches[0]
         
         let baselineValue : CGFloat = (4.0 * 7.0) + 6
-        let pitchValue : CGFloat = CGFloat(initialPitch.octave * 7) + CGFloat(initialPitch.step.intValue)
-        Swift.print("octave: \(initialPitch.octave), step: \(initialPitch.step), pitchValue: \(pitchValue)")
+        let pitchValue : CGFloat = CGFloat(initialPitch.octave * 7) + CGFloat(initialPitch.step.intValue)        
         return -((baselineValue - pitchValue) * spacing)
     }
     
@@ -133,6 +145,10 @@ final class CPMeasureLayer : CPLayer {
         self.path = path.cgPath
         fillColor = NSColor.clear.cgColor
         strokeColor = NSColor.black.cgColor
-        lineWidth = 1        
+        lineWidth = 1
+        
+        
+        layoutClef()
+        layoutNotes()
     }
 }

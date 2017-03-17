@@ -17,11 +17,12 @@ class CPGlyphLayer : CPLayer {
         }
     }
     
+    
     public var anchorAttributes : CPGlyphAnchorAttributes?
     public var glyphName : String?
     public var fontSize : CGFloat?
     public var glyphRect : CGRect?
-        
+    public var fontScalingMode : CPGlyphLayerFontScalingMode! = .allowsFontSideBearings
     private var newFont : NSFont!
     private var glyphs : UnsafeMutablePointer<CGGlyph>!
     private var pointer : UnsafePointer<CGPoint>!
@@ -43,6 +44,8 @@ class CPGlyphLayer : CPLayer {
     
     private func setUpAttributes() {
         
+        if glyphAsString == nil { return }
+        
         contentsScale = CPGlobals.contentScaleFactor
         masksToBounds = false
         len = glyphAsString!.characters.count
@@ -52,15 +55,27 @@ class CPGlyphLayer : CPLayer {
         glyphs = UnsafeMutablePointer<CGGlyph>.allocate(capacity: len)
         CTFontGetGlyphsForCharacters(CPFontManager.currentFont as CTFont, characters, glyphs, len)
         //  let rect = CTFontGetOpticalBoundsForGlyphs(CPFontManager.currentFont as CTFont, glyphs, characterFrames, len, CFOptionFlags.allZeros)
-        let rect = CTFontGetBoundingBox(CPFontManager.currentFont as CTFont)
-        //let rect = CTFontGetBoundingRectsForGlyphs(CPFontManager.currentFont as CTFont, .default, glyphs, characterFrames, len)
+        //let rect = CTFontGetBoundingBox(CPFontManager.currentFont as CTFont)
         
-        setGlyphs(glyphs.pointee)
+        let rect =
+            
+            //fontScalingMode == .zeroFontSideBearings ?
+            
+            //CTFontGetOpticalBoundsForGlyphs(CPFontManager.currentFont as CTFont, glyphs, characterFrames, len, CFOptionFlags.allZeros) :
+            //CTFontGetBoundingRectsForGlyphs(CPFontManager.currentFont as CTFont, .default, glyphs, characterFrames, len) :
+            CTFontGetBoundingBox(CPFontManager.currentFont as CTFont)
         
+        
+        
+        setGlyphs(glyphs.pointee)        
         newFont = NSFont(name: CPFontManager.currentFont.familyName!, size: getFontSize(toFitRect: frame, fromGlyphRectWhereFontSizeEqualsOne: rect))!
-        self.fontSize = newFont.pointSize
-        let newRect = CTFontGetBoundingRectsForGlyphs(newFont, .horizontal, glyphs, characterFrames, len)
         
+        self.fontSize = newFont.pointSize
+        let newRect = fontScalingMode == .zeroFontSideBearings ?
+            CTFontGetBoundingBox(newFont as CTFont) :
+            CTFontGetBoundingRectsForGlyphs(newFont, .horizontal, glyphs, characterFrames, len)
+       // Swift.print(newRect)
+      //  Swift.print(newFont.boundingRectForFont)
         //#MARK - convert to our coordinate space
         let points = [CGPoint(x: (frame.size.width * 0.5) - newRect.width * 0.5 - newRect.origin.x, y: (frame.size.height * 0.5) - (newRect.height * 0.5) - newRect.origin.y)]
         self.glyphRect = CGRect(origin: points.first!, size: newRect.size)
@@ -71,7 +86,7 @@ class CPGlyphLayer : CPLayer {
     }
     
     override func draw(in ctx: CGContext) {
-        Swift.print("\(self.self) Function: '\(#function)' Line \(#line).")
+        if glyphs == nil { return }
         setUpAttributes()
         ctx.saveGState()
         CTFontDrawGlyphs(newFont, glyphs, pointer, len, ctx)
@@ -101,10 +116,15 @@ class CPGlyphLayer : CPLayer {
     
     private func getFontSize(toFitRect rect: CGRect, fromGlyphRectWhereFontSizeEqualsOne glyphRect: CGRect) -> CGFloat {
         
-        let maxWidth = rect.width / (glyphRect.width / 4)
-        let maxHeight = rect.height / (glyphRect.height / 4)
+        let maxWidth = rect.width / (glyphRect.width / (fontScalingMode == .zeroFontSideBearings ? 1 : 4))
+        let maxHeight = rect.height / (glyphRect.height / (fontScalingMode == .zeroFontSideBearings ? 1 : 4))
         // let maxWidth = rect.width / glyphRect.width
         // let maxHeight = rect.height / glyphRect.height - abs(glyphRect.origin.y)
         return maxWidth < maxHeight ? maxWidth : maxHeight
     }
+}
+
+enum CPGlyphLayerFontScalingMode {
+    case allowsFontSideBearings
+    case zeroFontSideBearings
 }

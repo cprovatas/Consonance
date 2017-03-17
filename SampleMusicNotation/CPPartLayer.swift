@@ -20,10 +20,10 @@ class CPPartLayer : CPLayer {
         }
     }
 
-    init(id: String, measure: [CPMeasureLayer], frame: CGRect) {
+    init(id: String, measures: [CPMeasureLayer], frame: CGRect) {
         super.init()
         self.id = id
-        self.measures = measure
+        self.measures = measures
         self.frame = CGRect(x: frame.width * 0.25 , y: frame.height * 0.9, width: frame.width * 0.5, height: frame.height * 0.5)
         layoutMeasures()
     }

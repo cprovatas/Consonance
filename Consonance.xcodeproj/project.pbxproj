@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1253CB689B80999B1CAC0023 /* Pods_ConsonanceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F391A494B73ED3E8267404E0 /* Pods_ConsonanceTests.framework */; };
+		3E1D391C1E75EDF7004F976D /* CPFlagLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1D391B1E75EDF7004F976D /* CPFlagLayer.swift */; };
 		3E2000221E6503E60093FB86 /* CPThreadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2000211E6503E60093FB86 /* CPThreadManager.swift */; };
 		3E2AA8381E67932E007CEA24 /* CPStemLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2AA8371E67932E007CEA24 /* CPStemLayer.swift */; };
 		3E2B70421E381C4100F54AA8 /* CPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2B70411E381C4100F54AA8 /* CPView.swift */; };
@@ -61,6 +62,7 @@
 /* Begin PBXFileReference section */
 		122AF68C6392F0D7376CC9DA /* Pods-ConsonanceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsonanceTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ConsonanceTests/Pods-ConsonanceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1FC1EE1D3BFAF620BF5E1B27 /* Pods_ConsonanceUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConsonanceUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E1D391B1E75EDF7004F976D /* CPFlagLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPFlagLayer.swift; sourceTree = "<group>"; };
 		3E2000211E6503E60093FB86 /* CPThreadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPThreadManager.swift; sourceTree = "<group>"; };
 		3E2AA8371E67932E007CEA24 /* CPStemLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPStemLayer.swift; sourceTree = "<group>"; };
 		3E2B70411E381C4100F54AA8 /* CPView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPView.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				3E2AA8371E67932E007CEA24 /* CPStemLayer.swift */,
+				3E1D391B1E75EDF7004F976D /* CPFlagLayer.swift */,
 			);
 			name = CPStem;
 			sourceTree = "<group>";
@@ -690,6 +693,7 @@
 				3EFAC9501E5E6E2C00CDA40A /* CPGlyphAnchorAttributes.swift in Sources */,
 				3EAADD921E6E357000A10CE2 /* CPNoteLayer.swift in Sources */,
 				3EB47A7E1E3D31FD000BFC8B /* CPMeasureLayer.swift in Sources */,
+				3E1D391C1E75EDF7004F976D /* CPFlagLayer.swift in Sources */,
 				3EC365261E35853B0017B25E /* AppDelegate.swift in Sources */,
 				3E2AA8381E67932E007CEA24 /* CPStemLayer.swift in Sources */,
 				3EAADD941E6E35C100A10CE2 /* CPPitch.swift in Sources */,

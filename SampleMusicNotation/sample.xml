@@ -103,7 +103,7 @@
           <beat-type>4</beat-type>
         </time>
         <clef>
-          <sign>D</sign>
+          <sign>G</sign>
           <line>4</line>
         </clef>
       </attributes>
@@ -135,7 +135,7 @@
         </pitch>
         <duration>2</duration>
         <voice>1</voice>
-        <type>quarter</type>
+        <type>eighth</type>
         <stem default-y="10.5">up</stem>
       </note>
       <note default-x="698">
@@ -145,7 +145,7 @@
         </pitch>
         <duration>2</duration>
         <voice>1</voice>
-        <type>quarter</type>
+        <type>sixteenth</type>
         <stem default-y="-55">down</stem>
       </note>
       <barline location="right">

@@ -15,28 +15,29 @@ class CPNoteLayer : CPGlyphLayer {
     public var pitches : [CPPitch] = []
     public var noteDuration : Int!
     public var voice : Int!
-    public var type : CPNoteLayerType!
+    public var durationType : CPNoteLayerDurationType!
     public var stemPosition : CPStemLayerPosition!
     public var explicitXPosition : CGFloat?
+    public var stem : CPStemLayer? 
     
     public var shouldHaveStem : Bool {
         get {
-            return type.shouldHaveStem && stemPosition != .none
+            return durationType.shouldHaveStem && stemPosition != .none
         }
     }
     
-    convenience init(pitches: [CPPitch], noteDuration: Int, voice: Int, type: CPNoteLayerType, stemPosition: CPStemLayerPosition) {
+    convenience init(pitches: [CPPitch], noteDuration: Int, voice: Int, type: CPNoteLayerDurationType, stemPosition: CPStemLayerPosition) {
         self.init()
         self.pitches = pitches
         self.noteDuration = noteDuration
         self.voice = voice
-        self.type = type
+        self.durationType = type
         glyphAsString = type.glyph
         self.stemPosition = stemPosition
     }
 }
 
-enum CPNoteLayerType : String {
+enum CPNoteLayerDurationType : String {
     //TODO add other durations
     case whole = "whole"
     case half = "half"
@@ -54,7 +55,7 @@ enum CPNoteLayerType : String {
             case .quarter:
                 return ""
             case .eighth:
-                return ""
+                return ""
             case .sixteenth:
                 return ""
             }

@@ -51,3 +51,12 @@ public extension String {
         }
     }
 }
+
+public func * (left: inout CGSize, right: CGFloat) {
+    left = CGSize(width: left.width * right, height: left.height * right)
+}
+
+public func * (left: CGSize, right: CGFloat) -> CGSize {
+    return CGSize(width: left.width * right, height: left.height * right)
+}
+
