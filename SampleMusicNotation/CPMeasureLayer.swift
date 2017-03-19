@@ -13,8 +13,8 @@ import AppKit
 final class CPMeasureLayer : CPLayer {
     
     public var number : Int!
-    public var clef : CPClefLayer?
-    public var notes : [CPNoteLayer] = [] {
+    
+    public var glyphs : [CPGlyphLayer] = [] {
         didSet {
             layout(frame)
         }
@@ -26,39 +26,56 @@ final class CPMeasureLayer : CPLayer {
         }
     }
     
-    private func layoutClef() {
-        if (number != nil && number != 1) || clef == nil { return } //TODO: this probably is not the best way for now, but we need to learn how musicxml handles the redeclaration of measures etc...
-        let h = frame.height
-        clef!.frame.size = frame.size * 4
-      //  clef!.frame.origin = NSPoint(x: -clef!.frame.width * 0.5, y: (-clef!.frame.height * 0.5)  + clef!.glyphRect!.height * 0.5)
-        Swift.print(clef!.glyphRect)
-        clef!.frame.origin = CGPoint(x: -1500, y: -366)
-        clef!.frame.origin.y -= (frame.size.height / 8) - 7
-        clef!.borderWidth = 5
-        
-        addSublayer(clef!)
-        //Optional((1746.84310276196, 422.288872191222, 158.313794476077, 413.924608473909))
-        //Optional((1746.84310276196, 448.203332596532, 158.313794476077, 465.753529284529))
+    private func layoutGlyphs() {
+        if frame.height == 0 || frame.width == 0 { return }
+        var xPos : CGFloat = 0
+        for var i in 0..<glyphs.count {
+            let glyph = glyphs[i]
+            
+            let xPos = ((frame.size.width / CGFloat(glyphs.count)) * (CGFloat(i) + 0.5) - frame.size.width * 0.5)
+            glyph.frame = CGRect(x: xPos, y: 0, width: frame.size.width, height: frame.height)
+            
+            //glyph.frame.origin.x += glyph.glyphRect!.width * 0.25
+            
+            if glyph is CPNoteLayer {
+                setUpNote(glyph as! CPNoteLayer)
+            }else if glyph is CPClefLayer {
+                setUpClef(glyph as! CPClefLayer)
+            }
+            
+//            if i > 0 {
+                glyph.frame.origin.x -= glyph.glyphRect!.width * 0.25
+//            }
+          
+            addSublayer(glyph)
+        }
     }
     
-    private func layoutNotes() {
-        if frame.height == 0 || frame.width == 0 { return }
+    private func setUpNote(_ note: CPNoteLayer) {
         
-        for var i in 0..<notes.count {
-            let note = notes[i]
-            let yPos = yPosition(pitches: note.pitches)
-            let xPos = ((frame.size.width / CGFloat(notes.count)) * CGFloat(i) - frame.size.width * 0.5)
-            note.frame = CGRect(x: xPos, y: yPos, width: frame.size.width, height: frame.height)
-            note.frame.origin.x += note.glyphRect!.width * 0.7
-            
-            if note.shouldHaveStem {
-                layoutStem(forNote: note)
-                if note.durationType.shouldHaveFlag {
-                    layoutFlags(forNote: note)
-                }
+        note.frame.origin.y = yPosition(pitches: note.pitches)
+        if note.shouldHaveStem {
+            layoutStem(forNote: note)
+            if note.durationType.shouldHaveFlag {
+                layoutFlags(forNote: note)
             }
-            addSublayer(note)
         }
+    }
+    
+    //TODO: may need to treat clef as a normal glyph as it can be positioned anywhere in the measure
+    private func setUpClef(_ clef: CPClefLayer) {
+        if (number != nil && number != 1) { return } //TODO: this probably is not the best way for now, but we need to learn how musicxml handles the redeclaration of clefs etc...
+        
+        
+        //clef.frame.origin.x -= (bounds.size.width)
+        
+        clef.frame.size = bounds.size * 4
+        clef.frame.origin.x -= clef.frame.width * 0.5
+        clef.frame.origin.x += clef.glyphRect!.width * 4.05
+        clef.frame.origin.y = -(clef.frame.height * 0.5)
+        clef.frame.origin.y += (frame.size.height / 4) * CGFloat(clef.line - 1)
+        
+        addSublayer(clef)
     }
     
     /* measure layer should manage this since it needs to connect separate notes depending on context */
@@ -148,7 +165,6 @@ final class CPMeasureLayer : CPLayer {
         lineWidth = 1
         
         
-        layoutClef()
-        layoutNotes()
+        layoutGlyphs()
     }
 }

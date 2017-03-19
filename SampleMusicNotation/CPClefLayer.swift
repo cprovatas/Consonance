@@ -13,6 +13,8 @@ class CPClefLayer : CPGlyphLayer {
     public var sign : CPClefLayerSign!
     //TODO : maybe make this a type later
     //TODO : clef changes
+    
+    //Note for the future: all clefs are nested in an <attributes> tag, including clef changes 
     public var line : Int = 0
     
     convenience init(_ sign: CPClefLayerSign, _ line: Int) {
@@ -20,7 +22,7 @@ class CPClefLayer : CPGlyphLayer {
         self.sign = sign
         self.line = line
         self.glyphAsString = sign.glyph
-        self.fontScalingMode = .zeroFontSideBearings
+        self.fontScalingMode = .naturalVerticalPosition
     }
 }
 
@@ -29,6 +31,7 @@ public enum CPClefLayerSign : String {
     
     case bass = "F"
     case treble = "G"
+    case alto = "C"
     
     public init(rawValue: String) {
         switch rawValue.lowercased() {
@@ -38,9 +41,25 @@ public enum CPClefLayerSign : String {
             case "g":
                 self = .treble
             break
+            case "c":
+                self = .alto
         default:
-            self = .bass
-            break            
+            self = .bass /*  ░░░░▄▄▄▄▀▀▀▀▀▀▀▀▄▄▄▄▄▄
+                             ░░░░█░░░░▒▒▒▒▒▒▒▒▒▒▒▒░░▀▀▄
+                             ░░░█░░░▒▒▒▒▒▒░░░░░░░░▒▒▒░░█
+                             ░░█░░░░░░▄██▀▄▄░░░░░▄▄▄░░░█
+                             ░▀▒▄▄▄▒░█▀▀▀▀▄▄█░░░██▄▄█░░░█
+                             █▒█▒▄░▀▄▄▄▀░░░░░░░░█░░░▒▒▒▒▒█
+                             █▒█░█▀▄▄░░░░░█▀░░░░▀▄░░▄▀▀▀▄▒█
+                             ░█▀▄░█▄░█▀▄▄░▀░▀▀░▄▄▀░░░░█░░█
+                             ░░█░░▀▄▀█▄▄░█▀▀▀▄▄▄▄▀▀█▀██░█
+                             ░░░█░░██░░▀█▄▄▄█▄▄█▄████░█
+                             ░░░░█░░░▀▀▄░█░░░█░███████░█
+                             ░░░░░▀▄░░░▀▀▄▄▄█▄█▄█▄█▄▀░░█
+                             ░░░░░░░▀▄▄░▒▒▒▒░░░░░░░░░░█
+                             ░░░░░░░░░░▀▀▄▄░▒▒▒▒▒▒▒▒▒▒░█
+                             ░░░░░░░░░░░░░░▀▄▄▄▄▄░░░░░█          */
+            break
         }
     }
     // //8va gclef
@@ -53,6 +72,8 @@ public enum CPClefLayerSign : String {
                 return ""
             case .bass:
                 return ""
+            case .alto:
+                return ""
             default:
                 return ""
             }

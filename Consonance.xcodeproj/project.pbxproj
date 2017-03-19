@@ -299,6 +299,7 @@
 		3EC365511E35858F0017B25E /* Music Rendering */ = {
 			isa = PBXGroup;
 			children = (
+				3EDF7F2A1E7F2AB800DF1646 /* CPKeySignatureLayer */,
 				3EAADD981E6E36B500A10CE2 /* CPClefLayer */,
 				3EAADD951E6E35D200A10CE2 /* CPPart */,
 				3EAADD901E6E355F00A10CE2 /* CPNoteLayer */,
@@ -346,6 +347,13 @@
 				3EC3655D1E3586950017B25E /* CPGlobals.swift */,
 			);
 			name = Misc;
+			sourceTree = "<group>";
+		};
+		3EDF7F2A1E7F2AB800DF1646 /* CPKeySignatureLayer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CPKeySignatureLayer;
 			sourceTree = "<group>";
 		};
 		3EFAC94C1E5E6DE700CDA40A /* CPGlyph */ = {

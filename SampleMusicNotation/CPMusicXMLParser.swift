@@ -35,36 +35,50 @@ final class CPMusicXMLParser {
         //TODO: other measure formatting stuff :)
         for measure in measures {
             let aMeasure = CPMeasureLayer()
-            aMeasure.clef = parse(clef: measure["attributes"]["clef"])
-            aMeasure.notes = parse(notes: measure["note"], layer)
+            aMeasure.glyphs = parseMeasureChildren(measure, layer)
             aMeasure.frame.size.width = (measure.element?.value(ofAttribute: "width") ?? "\(layer.frame.width)").cgFloat
             theMeasures.append(aMeasure)
         }
         return theMeasures
     }
     
+    private class func parseMeasureChildren(_ measure: XMLIndexer, _ layer: CALayer) -> [CPGlyphLayer] {
+        var glyphs : [CPGlyphLayer] = []
+        
+        for child in measure.children {
+            
+            if child.element == nil { continue }
+            if child.element!.name.lowercased() == "note" {
+                glyphs.append(parse(note: child, layer))
+            }else if child.element!.name.lowercased() == "attributes" {
+                if child["clef"].element != nil {
+                    glyphs.append(parse(clef: child["clef"]))
+                }
+            }
+        }
+        
+        return glyphs
+    }
+    
     //TODO, finish up clef stuff :)
-    private class func parse(clef: XMLIndexer) -> CPClefLayer? {
+    private class func parse(clef: XMLIndexer) -> CPClefLayer {
         let aClef = CPClefLayer(CPClefLayerSign(rawValue: clef["sign"].element?.text ?? "g"),
                                 clef["line"].element?.text?.int ?? 0)
         return aClef
     }
     
-    private class func parse(notes: XMLIndexer, _ layer: CALayer) -> [CPNoteLayer] {
-        var notesArr : [CPNoteLayer] = []
-        for n in notes {
-            let note = CPNoteLayer(pitches: parse(pitches: n["pitch"]),
-                                   noteDuration: n["duration"].element?.text?.int ?? 0,
-                                   voice: n["voice"].element?.text?.int ?? 0,
-                                   type: CPNoteLayerDurationType(rawValue: n["type"].element?.text ?? "quarter"),
-                                   stemPosition: CPStemLayerPosition(rawValue: n["position"].element?.text ?? "none"))
-            
-            //TODO: xPosition
-            note.explicitXPosition = (n.element?.value(ofAttribute: "default-x") ?? "").cgFloat
-            notesArr.append(note)
-        }
+    private class func parse(note: XMLIndexer, _ layer: CALayer) -> CPNoteLayer {
         
-        return notesArr
+        let aNote = CPNoteLayer(pitches: parse(pitches: note["pitch"]),
+                               noteDuration: note["duration"].element?.text?.int ?? 0,
+                               voice: note["voice"].element?.text?.int ?? 0,
+                               type: CPNoteLayerDurationType(rawValue: note["type"].element?.text ?? "quarter"),
+                               stemPosition: CPStemLayerPosition(rawValue: note["position"].element?.text ?? "none"))
+        
+        
+        aNote.explicitXPosition = (note.element?.value(ofAttribute: "default-x") ?? "").cgFloat
+        
+        return aNote
     }
     
     private class func parse(pitches: XMLIndexer) -> [CPPitch] {

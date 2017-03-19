@@ -24,7 +24,7 @@ class CPPartLayer : CPLayer {
         super.init()
         self.id = id
         self.measures = measures
-        self.frame = CGRect(x: frame.width * 0.25 , y: frame.height * 0.9, width: frame.width * 0.5, height: frame.height * 0.5)
+        self.frame = CGRect(x: frame.width * 0.01, y: frame.height * 0.25, width: frame.width * 0.25, height: frame.height * 0.5)
         layoutMeasures()
     }
     

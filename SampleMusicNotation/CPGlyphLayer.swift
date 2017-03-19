@@ -22,7 +22,7 @@ class CPGlyphLayer : CPLayer {
     public var glyphName : String?
     public var fontSize : CGFloat?
     public var glyphRect : CGRect?
-    public var fontScalingMode : CPGlyphLayerFontScalingMode! = .allowsFontSideBearings
+    public var fontScalingMode : CPGlyphLayerFontScalingMode! = .centeredVerticallyAndScaled
     private var newFont : NSFont!
     private var glyphs : UnsafeMutablePointer<CGGlyph>!
     private var pointer : UnsafePointer<CGPoint>!
@@ -54,33 +54,23 @@ class CPGlyphLayer : CPLayer {
         CFStringGetCharacters(glyphAsString as! CFString, CFRangeMake(0, len), characters)
         glyphs = UnsafeMutablePointer<CGGlyph>.allocate(capacity: len)
         CTFontGetGlyphsForCharacters(CPFontManager.currentFont as CTFont, characters, glyphs, len)
-        //  let rect = CTFontGetOpticalBoundsForGlyphs(CPFontManager.currentFont as CTFont, glyphs, characterFrames, len, CFOptionFlags.allZeros)
-        //let rect = CTFontGetBoundingBox(CPFontManager.currentFont as CTFont)
         
-        let rect =
-            
-            //fontScalingMode == .zeroFontSideBearings ?
-            
-            //CTFontGetOpticalBoundsForGlyphs(CPFontManager.currentFont as CTFont, glyphs, characterFrames, len, CFOptionFlags.allZeros) :
-            //CTFontGetBoundingRectsForGlyphs(CPFontManager.currentFont as CTFont, .default, glyphs, characterFrames, len) :
-            CTFontGetBoundingBox(CPFontManager.currentFont as CTFont)
-        
-        
+        let rect = CTFontGetBoundingBox(CPFontManager.currentFont as CTFont)
         
         setGlyphs(glyphs.pointee)        
         newFont = NSFont(name: CPFontManager.currentFont.familyName!, size: getFontSize(toFitRect: frame, fromGlyphRectWhereFontSizeEqualsOne: rect))!
         
         self.fontSize = newFont.pointSize
-        let newRect = fontScalingMode == .zeroFontSideBearings ?
+        let glyphRect = CTFontGetBoundingRectsForGlyphs(newFont, .horizontal, glyphs, characterFrames, len)
+        let newRect = fontScalingMode == .naturalVerticalPosition ?
             CTFontGetBoundingBox(newFont as CTFont) :
-            CTFontGetBoundingRectsForGlyphs(newFont, .horizontal, glyphs, characterFrames, len)
-       // Swift.print(newRect)
-      //  Swift.print(newFont.boundingRectForFont)
+            glyphRect
+        
+      
         //#MARK - convert to our coordinate space
         let points = [CGPoint(x: (frame.size.width * 0.5) - newRect.width * 0.5 - newRect.origin.x, y: (frame.size.height * 0.5) - (newRect.height * 0.5) - newRect.origin.y)]
-        self.glyphRect = CGRect(origin: points.first!, size: newRect.size)
-        
-        //  let points = [CGPoint(x: 0, y: (frame.size.height * 0.5) - (newRect.height * 0.5) - newRect.origin.y)]
+        self.glyphRect = CGRect(origin: points.first!, size: glyphRect.size)
+                
         let rawPointer = UnsafeRawPointer(points)
         pointer = rawPointer.assumingMemoryBound(to: CGPoint.self)
     }
@@ -116,15 +106,13 @@ class CPGlyphLayer : CPLayer {
     
     private func getFontSize(toFitRect rect: CGRect, fromGlyphRectWhereFontSizeEqualsOne glyphRect: CGRect) -> CGFloat {
         
-        let maxWidth = rect.width / (glyphRect.width / (fontScalingMode == .zeroFontSideBearings ? 1 : 4))
-        let maxHeight = rect.height / (glyphRect.height / (fontScalingMode == .zeroFontSideBearings ? 1 : 4))
-        // let maxWidth = rect.width / glyphRect.width
-        // let maxHeight = rect.height / glyphRect.height - abs(glyphRect.origin.y)
+        let maxWidth = rect.width / (glyphRect.width / (fontScalingMode == .naturalVerticalPosition ? 1 : 4))
+        let maxHeight = rect.height / (glyphRect.height / (fontScalingMode == .naturalVerticalPosition  ? 1 : 4))
         return maxWidth < maxHeight ? maxWidth : maxHeight
     }
 }
 
 enum CPGlyphLayerFontScalingMode {
-    case allowsFontSideBearings
-    case zeroFontSideBearings
+    case naturalVerticalPosition
+    case centeredVerticallyAndScaled
 }

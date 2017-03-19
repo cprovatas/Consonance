@@ -93,19 +93,19 @@
         <measure-numbering>system</measure-numbering>
       </print>
       <attributes>
-        <divisions>2</divisions>
-        <key>
-          <fifths>5</fifths>
-          <mode>major</mode>
-        </key>
-        <time>
-          <beats>4</beats>
-          <beat-type>4</beat-type>
-        </time>
-        <clef>
-          <sign>G</sign>
-          <line>4</line>
-        </clef>
+          <divisions>2</divisions>
+          <key>
+              <fifths>5</fifths>
+              <mode>major</mode>
+          </key>
+          <time>
+              <beats>4</beats>
+              <beat-type>4</beat-type>
+          </time>
+          <clef>
+              <sign>G</sign>
+              <line>2</line>
+          </clef>
       </attributes>
       <sound tempo="120"/>
       <note default-x="300">
@@ -135,7 +135,7 @@
         </pitch>
         <duration>2</duration>
         <voice>1</voice>
-        <type>eighth</type>
+        <type>quarter</type>
         <stem default-y="10.5">up</stem>
       </note>
       <note default-x="698">
@@ -145,7 +145,7 @@
         </pitch>
         <duration>2</duration>
         <voice>1</voice>
-        <type>sixteenth</type>
+        <type>quarter</type>
         <stem default-y="-55">down</stem>
       </note>
       <barline location="right">
