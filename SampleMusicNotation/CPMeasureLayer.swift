@@ -12,13 +12,13 @@ import AppKit
 //TODO: Clefs are next :)
 final class CPMeasureLayer : CPLayer {
     
-    public var number : Int!
+    public var number : Int!        
     
-    public var glyphs : [CPGlyphLayer] = [] {
+    public var glyphs : [CPLayer] = [] {
         didSet {
             layout(frame)
         }
-    }        
+    }                
     
     override var frame: CGRect {
         didSet {
@@ -26,34 +26,56 @@ final class CPMeasureLayer : CPLayer {
         }
     }
     
+    private var currentClef : CPClefLayer!
+    
     private func layoutGlyphs() {
-        if frame.height == 0 || frame.width == 0 { return }
+        if frame.height == 0 || frame.width == 0 || glyphs.count == 0 { return }
+        
         var xPos : CGFloat = 0
         for var i in 0..<glyphs.count {
             let glyph = glyphs[i]
             
-            let xPos = ((frame.size.width / CGFloat(glyphs.count)) * (CGFloat(i) + 0.5) - frame.size.width * 0.5)
-            glyph.frame = CGRect(x: xPos, y: 0, width: frame.size.width, height: frame.height)
+            var glyphWidth = (frame.width - xPos) / CGFloat(glyphs.count - i)
+            
+            glyph.frame = CGRect(x: xPos, y: 0, width: glyphWidth, height: frame.height)
             
             //glyph.frame.origin.x += glyph.glyphRect!.width * 0.25
-            
+            glyph.borderWidth = 2
+            glyph.borderColor = NSColor.blue.cgColor
             if glyph is CPNoteLayer {
                 setUpNote(glyph as! CPNoteLayer)
             }else if glyph is CPClefLayer {
                 setUpClef(glyph as! CPClefLayer)
+                currentClef = glyph as! CPClefLayer
+                glyph.borderColor = NSColor.red.cgColor
+                
+            }else if glyph is CPKeySignatureLayer {
+                setUpKeySignature(glyph as! CPKeySignatureLayer)
             }
             
-//            if i > 0 {
-                glyph.frame.origin.x -= glyph.glyphRect!.width * 0.25
-//            }
-          
+            if glyph is CPGlyphRepresentable { //contains a glyphRect
+                if glyphWidth < (glyph as! CPGlyphRepresentable).glyphRect!.width {
+                    let val = (glyph as! CPGlyphRepresentable).glyphRect!.width - glyphWidth
+                    glyph.frame.size.width += val
+                    xPos += val
+                }
+            }
+            xPos += glyphWidth
             addSublayer(glyph)
+                                 
         }
     }
     
+    private func setUpKeySignature(_ keySig: CPKeySignatureLayer) {
+        if currentClef == nil {
+            currentClef = CPClefLayer(.treble, 4)
+        }
+        keySig.layout(currentClef)
+    }
+    
     private func setUpNote(_ note: CPNoteLayer) {
-        
-        note.frame.origin.y = yPosition(pitches: note.pitches)
+        if note.pitches.count < 1 { return }
+        note.frame.origin.y = CPMusicRenderingHelper.yPosition(pitch: note.pitches[0], measureFrame: frame)
         if note.shouldHaveStem {
             layoutStem(forNote: note)
             if note.durationType.shouldHaveFlag {
@@ -69,11 +91,11 @@ final class CPMeasureLayer : CPLayer {
         
         //clef.frame.origin.x -= (bounds.size.width)
         
-        clef.frame.size = bounds.size * 4
-        clef.frame.origin.x -= clef.frame.width * 0.5
-        clef.frame.origin.x += clef.glyphRect!.width * 4.05
-        clef.frame.origin.y = -(clef.frame.height * 0.5)
-        clef.frame.origin.y += (frame.size.height / 4) * CGFloat(clef.line - 1)
+        clef.frame.size.height = frame.size.height * 4
+  //      clef.frame.size.width = frame.size.width
+      //  clef.frame.origin.x -= clef.frame.width * 0.5
+      //  clef.frame.origin.x += clef.glyphRect!.width * 4.05
+        clef.frame.origin.y = CPMusicRenderingHelper.yPosition(clef, measureFrame: frame)
         
         addSublayer(clef)
     }
@@ -87,10 +109,10 @@ final class CPMeasureLayer : CPLayer {
         let flag = CPFlagLayer(duration: note.durationType)
         let point = CGPoint(x: note.glyphRect!.origin.x + ((note.anchorAttributes!.stemUpSE!.x * note.fontSize!) / 4), y: (note.glyphRect!.origin.y + (note.anchorAttributes!.stemUpSE!.y * note.fontSize!) / 4))
         let fr = bounds
-        flag.frame = CGRect(x: note.glyphRect!.width + note.frame.origin.x, y: 0, width: fr.width, height: fr.height - fr.height / 6)
+        flag.frame = CGRect(x: note.frame.origin.x, y: 0, width: fr.width, height: fr.height - fr.height / 6)
         
-        flag.frame.origin.x -= abs(flag.glyphRect!.maxX - note.glyphRect!.maxX)
-        flag.frame.origin.x -= 2.5
+        flag.frame.origin.x -= flag.glyphRect!.maxX
+        flag.frame.origin.x += ((flag.glyphRect!.width + note.glyphRect!.maxX) - 2.5)
         
         flag.frame.origin.y = (note.convert(note.stem!.maxYPoint, to: self).y - (flag.frame.height - ((flag.frame.height - flag.glyphRect!.height) * 0.5)))
         
@@ -103,20 +125,9 @@ final class CPMeasureLayer : CPLayer {
         note.stem = CPStemLayer(fromPoint: point, toYPosition: point.y + (frame.height / 4) * 3.25)
         note.addSublayer(note.stem!)
     }
+
     
-    private func yPosition(pitches: [CPPitch]) -> CGFloat {
-        let spacing = frame.height / 8
-        
-        //TODO: multiple pitches
-        //TODO: clef transposition
-        if pitches.count < 1 { return 0.0 }
-        let initialPitch = pitches[0]
-        
-        let baselineValue : CGFloat = (4.0 * 7.0) + 6
-        let pitchValue : CGFloat = CGFloat(initialPitch.octave * 7) + CGFloat(initialPitch.step.intValue)        
-        return -((baselineValue - pitchValue) * spacing)
-    }
-    
+    //sets up a basic grid for the measures
     private func layout(_ frame: CGRect) {
               
         contentsScale = CPGlobals.contentScaleFactor
@@ -163,7 +174,6 @@ final class CPMeasureLayer : CPLayer {
         fillColor = NSColor.clear.cgColor
         strokeColor = NSColor.black.cgColor
         lineWidth = 1
-        
         
         layoutGlyphs()
     }

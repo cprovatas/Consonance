@@ -92,10 +92,11 @@
         </system-layout>
         <measure-numbering>system</measure-numbering>
       </print>
+      <sound tempo="120"/>
       <attributes>
           <divisions>2</divisions>
           <key>
-              <fifths>5</fifths>
+              <fifths>-7</fifths>
               <mode>major</mode>
           </key>
           <time>
@@ -103,11 +104,10 @@
               <beat-type>4</beat-type>
           </time>
           <clef>
-              <sign>G</sign>
-              <line>2</line>
+              <sign>F</sign>
+              <line>4</line>
           </clef>
       </attributes>
-      <sound tempo="120"/>
       <note default-x="300">
         <pitch>
           <step>A</step>
@@ -128,6 +128,7 @@
         <type>quarter</type>
         <stem default-y="6">up</stem>
       </note>
+     
       <note default-x="494">
         <pitch>
           <step>A</step>
@@ -145,8 +146,18 @@
         </pitch>
         <duration>2</duration>
         <voice>1</voice>
-        <type>quarter</type>
+        <type>sixteenth</type>
         <stem default-y="-55">down</stem>
+      </note>
+      <note default-x="698">
+          <pitch>
+              <step>G</step>
+              <octave>4</octave>
+          </pitch>
+          <duration>2</duration>
+          <voice>1</voice>
+          <type>quarter</type>
+          <stem default-y="-55">down</stem>
       </note>
       <barline location="right">
         <bar-style>light-heavy</bar-style>

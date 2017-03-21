@@ -35,15 +35,15 @@ final class CPMusicXMLParser {
         //TODO: other measure formatting stuff :)
         for measure in measures {
             let aMeasure = CPMeasureLayer()
-            aMeasure.glyphs = parseMeasureChildren(measure, layer)
+            aMeasure.glyphs = parseMeasureChildren(measure, layer, aMeasure)
             aMeasure.frame.size.width = (measure.element?.value(ofAttribute: "width") ?? "\(layer.frame.width)").cgFloat
             theMeasures.append(aMeasure)
         }
         return theMeasures
     }
     
-    private class func parseMeasureChildren(_ measure: XMLIndexer, _ layer: CALayer) -> [CPGlyphLayer] {
-        var glyphs : [CPGlyphLayer] = []
+    private class func parseMeasureChildren(_ measure: XMLIndexer, _ layer: CALayer, _ measureLayer: CPMeasureLayer) -> [CPLayer] {
+        var glyphs : [CPLayer] = []
         
         for child in measure.children {
             
@@ -54,13 +54,21 @@ final class CPMusicXMLParser {
                 if child["clef"].element != nil {
                     glyphs.append(parse(clef: child["clef"]))
                 }
+                
+                if child["key"].element != nil {
+                    glyphs.append(parse(keySignature: child["key"]))
+                }
             }
         }
         
         return glyphs
     }
     
-    //TODO, finish up clef stuff :)
+    private class func parse(keySignature: XMLIndexer) -> CPKeySignatureLayer {
+        return CPKeySignatureLayer((keySignature["fifths"].element?.text ?? "0").int,
+                              mode: CPKeySignatureMode(rawValue: keySignature["mode"].element?.text ?? "major"))
+    }
+    
     private class func parse(clef: XMLIndexer) -> CPClefLayer {
         let aClef = CPClefLayer(CPClefLayerSign(rawValue: clef["sign"].element?.text ?? "g"),
                                 clef["line"].element?.text?.int ?? 0)

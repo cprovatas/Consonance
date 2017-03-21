@@ -9,7 +9,11 @@
 import Foundation
 import Cocoa
 
-class CPGlyphLayer : CPLayer {
+protocol CPGlyphRepresentable {
+    var glyphRect : CGRect? { get set }
+}
+
+class CPGlyphLayer : CPLayer, CPGlyphRepresentable {
     
     public var glyphAsString : String? {
         didSet {
@@ -21,7 +25,7 @@ class CPGlyphLayer : CPLayer {
     public var anchorAttributes : CPGlyphAnchorAttributes?
     public var glyphName : String?
     public var fontSize : CGFloat?
-    public var glyphRect : CGRect?
+    public var glyphRect : CGRect?    
     public var fontScalingMode : CPGlyphLayerFontScalingMode! = .centeredVerticallyAndScaled
     private var newFont : NSFont!
     private var glyphs : UnsafeMutablePointer<CGGlyph>!
@@ -68,7 +72,7 @@ class CPGlyphLayer : CPLayer {
         
       
         //#MARK - convert to our coordinate space
-        let points = [CGPoint(x: (frame.size.width * 0.5) - newRect.width * 0.5 - newRect.origin.x, y: (frame.size.height * 0.5) - (newRect.height * 0.5) - newRect.origin.y)]
+        let points = [CGPoint(x: (frame.size.width * 0.5) - glyphRect.width * 0.5, y: (frame.size.height * 0.5) - (newRect.height * 0.5) - newRect.origin.y)]
         self.glyphRect = CGRect(origin: points.first!, size: glyphRect.size)
                 
         let rawPointer = UnsafeRawPointer(points)
@@ -106,9 +110,10 @@ class CPGlyphLayer : CPLayer {
     
     private func getFontSize(toFitRect rect: CGRect, fromGlyphRectWhereFontSizeEqualsOne glyphRect: CGRect) -> CGFloat {
         
-        let maxWidth = rect.width / (glyphRect.width / (fontScalingMode == .naturalVerticalPosition ? 1 : 4))
+        //let maxWidth = rect.width / (glyphRect.width / (fontScalingMode == .naturalVerticalPosition ? 1 : 4))
         let maxHeight = rect.height / (glyphRect.height / (fontScalingMode == .naturalVerticalPosition  ? 1 : 4))
-        return maxWidth < maxHeight ? maxWidth : maxHeight
+     //   return maxWidth < maxHeight ? maxWidth : maxHeight
+        return maxHeight
     }
 }
 
