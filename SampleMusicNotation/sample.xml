@@ -92,7 +92,6 @@
         </system-layout>
         <measure-numbering>system</measure-numbering>
       </print>
-      <sound tempo="120"/>
       <attributes>
           <divisions>2</divisions>
           <key>
@@ -108,6 +107,7 @@
               <line>4</line>
           </clef>
       </attributes>
+      <sound tempo="120"/>
       <note default-x="300">
         <pitch>
           <step>A</step>
@@ -156,7 +156,7 @@
           </pitch>
           <duration>2</duration>
           <voice>1</voice>
-          <type>quarter</type>
+          <type>sixteenth</type>
           <stem default-y="-55">down</stem>
       </note>
       <barline location="right">

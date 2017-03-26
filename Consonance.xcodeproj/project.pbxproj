@@ -37,6 +37,7 @@
 		3EDF7F2E1E7F2C9200DF1646 /* CPAccidentalLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDF7F2D1E7F2C9200DF1646 /* CPAccidentalLayer.swift */; };
 		3EDF7F301E7F4DF300DF1646 /* sample.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3EDF7F2F1E7F4DF300DF1646 /* sample.xml */; };
 		3EDF7F321E80BDA200DF1646 /* CPMusicRenderingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDF7F311E80BDA200DF1646 /* CPMusicRenderingHelper.swift */; };
+		3EDF7F341E833D4A00DF1646 /* CPDebugger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDF7F331E833D4A00DF1646 /* CPDebugger.swift */; };
 		3EFAC94E1E5E6DFF00CDA40A /* CPGlyphJSONSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFAC94D1E5E6DFF00CDA40A /* CPGlyphJSONSerialization.swift */; };
 		3EFAC9501E5E6E2C00CDA40A /* CPGlyphAnchorAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFAC94F1E5E6E2C00CDA40A /* CPGlyphAnchorAttributes.swift */; };
 		3EFAC9521E5E6E8100CDA40A /* CPGlyphLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFAC9511E5E6E8100CDA40A /* CPGlyphLayer.swift */; };
@@ -100,6 +101,7 @@
 		3EDF7F2D1E7F2C9200DF1646 /* CPAccidentalLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPAccidentalLayer.swift; sourceTree = "<group>"; };
 		3EDF7F2F1E7F4DF300DF1646 /* sample.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sample.xml; sourceTree = "<group>"; };
 		3EDF7F311E80BDA200DF1646 /* CPMusicRenderingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPMusicRenderingHelper.swift; sourceTree = "<group>"; };
+		3EDF7F331E833D4A00DF1646 /* CPDebugger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPDebugger.swift; sourceTree = "<group>"; };
 		3EFAC94D1E5E6DFF00CDA40A /* CPGlyphJSONSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPGlyphJSONSerialization.swift; sourceTree = "<group>"; };
 		3EFAC94F1E5E6E2C00CDA40A /* CPGlyphAnchorAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPGlyphAnchorAttributes.swift; sourceTree = "<group>"; };
 		3EFAC9511E5E6E8100CDA40A /* CPGlyphLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPGlyphLayer.swift; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				3EC365591E3586750017B25E /* CPTypeDeclarations.swift */,
 				3EC3655B1E3586800017B25E /* CPExtensions.swift */,
 				3EC3655D1E3586950017B25E /* CPGlobals.swift */,
+				3EDF7F331E833D4A00DF1646 /* CPDebugger.swift */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
@@ -711,6 +714,7 @@
 				3EC365561E3585DF0017B25E /* CPNotationRenderManager.swift in Sources */,
 				3EFAC9551E5E6F8B00CDA40A /* CPFontManager.swift in Sources */,
 				3EFAC9501E5E6E2C00CDA40A /* CPGlyphAnchorAttributes.swift in Sources */,
+				3EDF7F341E833D4A00DF1646 /* CPDebugger.swift in Sources */,
 				3EAADD921E6E357000A10CE2 /* CPNoteLayer.swift in Sources */,
 				3EB47A7E1E3D31FD000BFC8B /* CPMeasureLayer.swift in Sources */,
 				3E1D391C1E75EDF7004F976D /* CPFlagLayer.swift in Sources */,

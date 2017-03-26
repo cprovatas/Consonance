@@ -9,7 +9,6 @@
 import Foundation
 import AppKit
 
-//TODO: Clefs are next :)
 final class CPMeasureLayer : CPLayer {
     
     public var number : Int!        
@@ -39,9 +38,7 @@ final class CPMeasureLayer : CPLayer {
             
             glyph.frame = CGRect(x: xPos, y: 0, width: glyphWidth, height: frame.height)
             
-            //glyph.frame.origin.x += glyph.glyphRect!.width * 0.25
-            glyph.borderWidth = 2
-            glyph.borderColor = NSColor.blue.cgColor
+            //glyph.frame.origin.x += glyph.glyphRect!.width * 0.25           
             if glyph is CPNoteLayer {
                 setUpNote(glyph as! CPNoteLayer)
             }else if glyph is CPClefLayer {

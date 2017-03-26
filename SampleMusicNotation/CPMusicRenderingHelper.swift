@@ -8,18 +8,18 @@
 
 import Foundation
 
-
+//TODO: multiple pitches
 final class CPMusicRenderingHelper {
     
     //gives you the yPosition of a note based on the pitch
     public class func yPosition(pitch: CPPitch, measureFrame frame: CGRect) -> CGFloat {
         let spacing = frame.height / 8
         
-        //TODO: multiple pitches
+        
         //TODO: clef transposition        
         let initialPitch = pitch
         
-        let baselineValue : CGFloat = (4.0 * 7.0) + 6
+        let baselineValue : CGFloat = (4.0 * 7.0) + 7
         let pitchValue : CGFloat = CGFloat(initialPitch.octave * 7) + CGFloat(initialPitch.step.intValue)
         return -((baselineValue - pitchValue) * spacing)
     }

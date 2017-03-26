@@ -40,12 +40,20 @@ final class CPKeySignatureLayer : CPLayer, CPGlyphRepresentable {
         // now that we have an instance of the clef we will do the layout
         // check octave
         let isSharpKey = numberOfSharps > 0
-        borderColor = NSColor.red.cgColor
-        borderWidth = 2
+        let layer = CALayer()
+        layer.backgroundColor = NSColor.cyan.cgColor
         
-        var spacing = CPMusicRenderingHelper.yPosition(clef, measureFrame: frame) //get baseline and convert to our point
-        spacing += frame.height * (9 / 8)
+        let mesSpacing = (frame.size.height / 4)
+        var originOfClefPosition = mesSpacing * CGFloat(2 - 1)
+        // TODO: we still need to additional calculation for c clef I belive
+        // also octave clef
+        let transpotionSpacing = CGFloat(CPPitchLetter(rawValue: clef.sign.rawValue).octaveNeutralWholeToneDistance(toPitch: .c)) * mesSpacing
         
+        
+        CPDebugger.show(originOfClefPosition)
+        layer.frame = CGRect(x: 0, y: originOfClefPosition, width: 50, height: 50)
+        addSublayer(layer)   
+        let halfFrame = frame.height * 0.5
         var xPos : CGFloat = 0
         var initialOffset : CGFloat =  0.0
         for var i in 0..<abs(numberOfSharps) {
@@ -54,23 +62,35 @@ final class CPKeySignatureLayer : CPLayer, CPGlyphRepresentable {
             if i == 0 {
                 initialOffset = abs(accidental.frame.origin.x - accidental.glyphRect!.origin.x)
             }
-            //DEBUG:
-            accidental.borderColor = NSColor.yellow.cgColor
-            accidental.borderWidth = 2
+            //DEBUG:           
             var octave = 4
             
-            var proposedY = CPMusicRenderingHelper.yPosition(pitch: CPPitch(step: CPPitchLetter(rawValue: CPKeySignatureLayer.circleOfFourths[i]), octave: octave), measureFrame: frame) + spacing
+            
+            var proposedY = CPMusicRenderingHelper.yPosition(pitch: CPPitch(step: CPPitchLetter(rawValue: CPKeySignatureLayer.circleOfFourths[i]), octave: octave), measureFrame: frame) + transpotionSpacing
             
             //F - flat looks ok in bass clef
             // however treble clef may want to bring the accidentals
             // there may be some specific behavior here that is required
             // not necessarily an accidental that is inside the staff
             // also TODO: out of bounds if fifths > 7 ( not a high priority obviously )
-            while proposedY - spacing <= 0 {
-                proposedY = CPMusicRenderingHelper.yPosition(pitch: CPPitch(step: CPPitchLetter(rawValue: CPKeySignatureLayer.circleOfFourths[i]), octave: octave), measureFrame: frame) + spacing
+            
+            //if it's too low
+            while proposedY <= 0 {
                 octave += 1
+                proposedY = CPMusicRenderingHelper.yPosition(pitch: CPPitch(step: CPPitchLetter(rawValue: CPKeySignatureLayer.circleOfFourths[i]), octave: octave), measureFrame: frame) + transpotionSpacing
             }
-            Swift.print(proposedY)
+            //if it's too high :)
+            //Note, this might not be right, but it works for treble and bass clef and alto clef
+            
+            // <--- WHAT WE NEED TO DO NEXT -->
+            //OOKKK so instead of checking against the bounds of measure,
+            // we keep track of the previous clef y Position and transpose the octave that way :)
+            // Don't forget about sharp keys either :P
+            while proposedY + accidental.frame.height * 0.5 >= frame.height  {
+                octave -= 1
+                proposedY = CPMusicRenderingHelper.yPosition(pitch: CPPitch(step: CPPitchLetter(rawValue: CPKeySignatureLayer.circleOfFourths[i]), octave: octave), measureFrame: frame) + transpotionSpacing
+            }
+            
             
             accidental.frame.origin.y = proposedY
             xPos += accidental.glyphRect!.width

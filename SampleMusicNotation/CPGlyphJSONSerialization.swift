@@ -26,7 +26,7 @@ open class CPGlyphJSONSerialization {
         }
         
         guard let anchorAttributes = json["glyphsWithAnchors"] as? Dictionary<String, Any> else {
-            Swift.print("\(self.self) Error Function: '\(#function)' Line \(#line).  'glyphsWithAnchors' key not found")
+            CPDebugger.show("\(self.self) Error Function: '\(#function)' Line \(#line).  'glyphsWithAnchors' key not found")
             return nil
         }
         
@@ -80,17 +80,17 @@ open class CPGlyphJSONSerialization {
         }
         
         guard let path = Bundle.main.path(forResource: name, ofType: "json") else {
-            Swift.print("CPGlyphJSONSerialization Error Function: '\(#function)' Line \(#line).  Path for file not found")
+            CPDebugger.show("CPGlyphJSONSerialization Error Function: '\(#function)' Line \(#line).  Path for file not found")
             return nil
         }
         
         guard let data = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
-            Swift.print("\(self.self) Error Function: '\(#function)' Line \(#line).  Couldn't get the data from that path")
+            CPDebugger.show("\(self.self) Error Function: '\(#function)' Line \(#line).  Couldn't get the data from that path")
             return nil
         }
         
         guard let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) else {
-            Swift.print("\(self.self) Error Function: '\(#function)' Line \(#line).  JSON Couldn't be parsed at path")
+            CPDebugger.show("\(self.self) Error Function: '\(#function)' Line \(#line).  JSON Couldn't be parsed at path")
             return nil
         }
         

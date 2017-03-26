@@ -55,19 +55,28 @@ enum CPPitchLetter : String {
     public var intValue : Int {
         switch self {
         case .a:
-            return 5
-        case .b:
             return 6
+        case .b:
+            return 7
         case .c:
-            return 0
-        case .d:
             return 1
-        case .e:
+        case .d:
             return 2
-        case .f:
+        case .e:
             return 3
-        case .g:
+        case .f:
             return 4
+        case .g:
+            return 5
         }
+    }
+    
+    //calculates how far a given pitch is away from another note, ignorning the octave, used for clef transposition
+    public func octaveNeutralWholeToneDistance(toPitch pitch: CPPitchLetter) -> Int {
+        var val = abs(self.intValue - pitch.intValue)
+        if val > 3 {
+            val -= 7
+        }
+        return val
     }
 }

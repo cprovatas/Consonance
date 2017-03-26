@@ -81,6 +81,10 @@ class CPGlyphLayer : CPLayer, CPGlyphRepresentable {
     
     override func draw(in ctx: CGContext) {
         if glyphs == nil { return }
+        if CPDebugger.enableBorders {
+            borderWidth = 2
+            borderColor = NSColor(calibratedRed: CGFloat(arc4random_uniform(255)) / CGFloat(255), green: CGFloat(arc4random_uniform(255)) / CGFloat(255), blue: CGFloat(arc4random_uniform(255)) / CGFloat(255), alpha: 1).cgColor
+        }
         setUpAttributes()
         ctx.saveGState()
         CTFontDrawGlyphs(newFont, glyphs, pointer, len, ctx)
@@ -90,17 +94,17 @@ class CPGlyphLayer : CPLayer, CPGlyphRepresentable {
     
     private func setGlyphs(_ glyph: CGGlyph) {
         guard let fontName = CPFontManager.currentFont.familyName else {
-            Swift.print("\(self.self) Error Function: '\(#function)' Line \(#line).  Font Family name not found")
+            CPDebugger.show("\(self.self) Error Function: '\(#function)' Line \(#line).  Font Family name not found")
             return
         }
         
         guard let customFont = CGFont(fontName as CFString) else {
-            Swift.print("\(self.self) Error Function: '\(#function)' Line \(#line).  Custom font not found")
+            CPDebugger.show("\(self.self) Error Function: '\(#function)' Line \(#line).  Custom font not found")
             return
         }
         
         guard let name = customFont.name(for: glyph) else {
-            Swift.print("\(self.self) Error Function: '\(#function)' Line \(#line).  Couldn't get glyph name")
+            CPDebugger.show("\(self.self) Error Function: '\(#function)' Line \(#line).  Couldn't get glyph name")
             return
         }
         

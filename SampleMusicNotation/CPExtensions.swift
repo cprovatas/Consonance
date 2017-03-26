@@ -34,7 +34,7 @@ public extension AffineTransform {
         self.init()
         self.translate(x: rect.origin.x + rect.size.width * 0.5, y: rect.origin.y + rect.size.height * 0.5)
         self.rotate(byDegrees: degrees)
-        self.translate(x: -(rect.origin.x + rect.size.width * 0.5), y: -(rect.origin.y + rect.size.height * 0.5))
+        self.translate(x: -(rect.origin.x + rect.size.width * 0.5), y: -(rect.origin.y + rect.size.height * 0.5))    
     }
 }
 
