@@ -103,8 +103,8 @@
               <beat-type>4</beat-type>
           </time>
           <clef>
-              <sign>F</sign>
-              <line>4</line>
+              <sign>C</sign>
+              <line>3</line>
           </clef>
       </attributes>
       <sound tempo="120"/>

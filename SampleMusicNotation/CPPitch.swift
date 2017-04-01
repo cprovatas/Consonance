@@ -9,9 +9,31 @@
 import Foundation
 import Cocoa
 
+
 struct CPPitch {
+    fileprivate static let pitches : [CPPitchLetter] = [.c, .d, .e, .f, .g, .a, .b]
     public var step: CPPitchLetter!
     public var octave: Int
+    
+    
+    // i think something i'm missing w/ tranposition, is the usefulness of the modulo operator
+    // this is something i need apply to refactor some code
+    // note: c is the base note, we may keep this the trend for all functions
+    public func transposedByWholeToneAmount(_ amt: Int) -> CPPitch {
+        
+        var index = 0
+        for var i in 0..<CPPitch.pitches.count {
+            if CPPitch.pitches[i] == self.step {
+                index = i
+            }
+        }
+        
+        var val = (index + amt) % 7
+        if val < 0 { val += 7 }
+        let divisor = ((index + amt) - val) / 7        
+        
+        return CPPitch(step: CPPitch.pitches[val], octave: octave + divisor)
+    }
 }
 
 enum CPPitchLetter : String {
@@ -74,9 +96,10 @@ enum CPPitchLetter : String {
     //calculates how far a given pitch is away from another note, ignorning the octave, used for clef transposition
     public func octaveNeutralWholeToneDistance(toPitch pitch: CPPitchLetter) -> Int {
         var val = abs(self.intValue - pitch.intValue)
-        if val > 3 {
+        while val > 3 {
             val -= 7
         }
         return val
     }
+    
 }

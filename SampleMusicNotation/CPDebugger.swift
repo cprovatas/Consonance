@@ -12,12 +12,12 @@ final class CPDebugger {
     
     public static let enableBorders : Bool = true
     
-    public static let debugEnabled : Bool = true
+    
     
     public class func show(_ msg: Any) {
-        if debugEnabled {
-            Swift.print(msg)
-        }
+        #if DEBUG
+            debugPrint(msg)
+        #endif
     }
     
 }

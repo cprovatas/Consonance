@@ -11,9 +11,8 @@ import Cocoa
 
 //TODO: Key changes
 
+
 final class CPKeySignatureLayer : CPLayer, CPGlyphRepresentable {
-    
-    static let circleOfFourths = ["B", "E", "A", "D", "G", "C", "F"]
     
     public var numberOfSharps : Int!
     public var mode: CPKeySignatureMode! //don't know what this is for yet
@@ -43,63 +42,45 @@ final class CPKeySignatureLayer : CPLayer, CPGlyphRepresentable {
         let layer = CALayer()
         layer.backgroundColor = NSColor.cyan.cgColor
         
-        let mesSpacing = (frame.size.height / 4)
-        var originOfClefPosition = mesSpacing * CGFloat(2 - 1)
-        // TODO: we still need to additional calculation for c clef I belive
-        // also octave clef
-        let transpotionSpacing = CGFloat(CPPitchLetter(rawValue: clef.sign.rawValue).octaveNeutralWholeToneDistance(toPitch: .c)) * mesSpacing
+        
+        let noteHeightSpacing : CGFloat = frame.height / 8
+
+        let transpositionSpacing = clef.getKeySignaturePitchOffsetInWholeTones() * noteHeightSpacing
         
         
-        CPDebugger.show(originOfClefPosition)
-        layer.frame = CGRect(x: 0, y: originOfClefPosition, width: 50, height: 50)
-        addSublayer(layer)   
-        let halfFrame = frame.height * 0.5
+          // < -- this implementation we will use for determining the ordering of accidentals in the key sig declaration
+        var intervalSet = isSharpKey ? [-3, 4] : [-4, 3]
+        var initialNote = CPPitch(step: .b, octave: 4)
+//        if CPMusicRenderingHelper.yPosition(pitch: initialNote, measureFrame: frame) < 0 {
+//            initialNote.octave += 1
+//        }
+//        
+//        if CPMusicRenderingHelper.yPosition(pitch: initialNote.transposedByWholeToneAmount(intervalSet[1]), measureFrame: frame) + transpositionSpacing >  frame.height {
+//            intervalSet.reverse()
+//        }
+        
         var xPos : CGFloat = 0
-        var initialOffset : CGFloat =  0.0
+        
         for var i in 0..<abs(numberOfSharps) {
             let accidental = CPAccidentalLayer(isSharpKey ? .sharp : .flat)
             accidental.frame = CGRect(x: xPos, y: 0, width: frame.width, height: frame.height)
-            if i == 0 {
-                initialOffset = abs(accidental.frame.origin.x - accidental.glyphRect!.origin.x)
-            }
-            //DEBUG:           
-            var octave = 4
-            
-            
-            var proposedY = CPMusicRenderingHelper.yPosition(pitch: CPPitch(step: CPPitchLetter(rawValue: CPKeySignatureLayer.circleOfFourths[i]), octave: octave), measureFrame: frame) + transpotionSpacing
-            
             //F - flat looks ok in bass clef
             // however treble clef may want to bring the accidentals
             // there may be some specific behavior here that is required
             // not necessarily an accidental that is inside the staff
             // also TODO: out of bounds if fifths > 7 ( not a high priority obviously )
-            
-            //if it's too low
-            while proposedY <= 0 {
-                octave += 1
-                proposedY = CPMusicRenderingHelper.yPosition(pitch: CPPitch(step: CPPitchLetter(rawValue: CPKeySignatureLayer.circleOfFourths[i]), octave: octave), measureFrame: frame) + transpotionSpacing
-            }
-            //if it's too high :)
-            //Note, this might not be right, but it works for treble and bass clef and alto clef
-            
-            // <--- WHAT WE NEED TO DO NEXT -->
-            //OOKKK so instead of checking against the bounds of measure,
-            // we keep track of the previous clef y Position and transpose the octave that way :)
-            // Don't forget about sharp keys either :P
-            while proposedY + accidental.frame.height * 0.5 >= frame.height  {
-                octave -= 1
-                proposedY = CPMusicRenderingHelper.yPosition(pitch: CPPitch(step: CPPitchLetter(rawValue: CPKeySignatureLayer.circleOfFourths[i]), octave: octave), measureFrame: frame) + transpotionSpacing
+                // we need to do this calculation using transposition, it's the only vaiable way I think
+                // we can really do it relative to the previous because of the relationships required...
+            if i != 0 {
+                initialNote = initialNote.transposedByWholeToneAmount(intervalSet[i % 2] )
             }
             
+            accidental.frame.origin.y = CPMusicRenderingHelper.yPosition(pitch: initialNote, measureFrame: frame) + transpositionSpacing
             
-            accidental.frame.origin.y = proposedY
             xPos += accidental.glyphRect!.width
             addSublayer(accidental)
         }
-        
-        glyphRect!.size.width = xPos + initialOffset * 2
-       // frame.origin.x += 500
-        
+        glyphRect!.size.width = xPos
     }
     
 }

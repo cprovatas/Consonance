@@ -9,6 +9,7 @@
 import Foundation
 import Cocoa
 
+fileprivate let clefDefaultLinePositions : [CPClefLayerSign : Int] = [.bass : 4, .treble : 2, .alto : 3] //stored default line values for clefs
 class CPClefLayer : CPGlyphLayer {
     public var sign : CPClefLayerSign!
     //TODO : maybe make this a type later
@@ -23,6 +24,21 @@ class CPClefLayer : CPGlyphLayer {
         self.line = line
         self.glyphAsString = sign.glyph
         self.fontScalingMode = .naturalVerticalPosition
+    }
+    
+    public func getKeySignaturePitchOffsetInWholeTones() -> CGFloat {
+        var offset : CGFloat = 0.0
+        if sign == .bass {
+            offset -= 1.0
+        }else if sign == .treble {
+            offset += 1
+        }
+        
+        if line != clefDefaultLinePositions[sign] {            
+            offset += (CGFloat(clefDefaultLinePositions[sign]!) - CGFloat(line) * 2)  //line is based on two whole tones
+        }
+        
+        return offset
     }
 }
 

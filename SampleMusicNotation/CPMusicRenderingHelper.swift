@@ -15,11 +15,9 @@ final class CPMusicRenderingHelper {
     public class func yPosition(pitch: CPPitch, measureFrame frame: CGRect) -> CGFloat {
         let spacing = frame.height / 8
         
-        
         //TODO: clef transposition        
         let initialPitch = pitch
-        
-        let baselineValue : CGFloat = (4.0 * 7.0) + 7
+        let baselineValue : CGFloat = 35
         let pitchValue : CGFloat = CGFloat(initialPitch.octave * 7) + CGFloat(initialPitch.step.intValue)
         return -((baselineValue - pitchValue) * spacing)
     }
