@@ -15,13 +15,17 @@ final class CPMeasureLayer : CPLayer {
     
     public var glyphs : [CPLayer] = [] {
         didSet {
-            layout(frame)
+            if oldValue != glyphs {
+                layout(frame)
+            }
         }
     }                
     
     override var frame: CGRect {
         didSet {
-            layout(frame)
+            if oldValue != frame {
+                layout(frame)
+            }
         }
     }
     
@@ -55,8 +59,11 @@ final class CPMeasureLayer : CPLayer {
                     let val = (glyph as! CPGlyphRepresentable).glyphRect!.width - glyphWidth
                     glyph.frame.size.width += val
                     xPos += val
+                }else if (glyph as! CPGlyphRepresentable).glyphRect!.width == 0 {
+                    glyphWidth = 0
                 }
             }
+            
             xPos += glyphWidth
             addSublayer(glyph)
                                  
@@ -65,7 +72,7 @@ final class CPMeasureLayer : CPLayer {
     
     private func setUpKeySignature(_ keySig: CPKeySignatureLayer) {
         if currentClef == nil {
-            currentClef = CPClefLayer(.treble, 4)
+            currentClef = CPClefLayer(.treble, 4, nil)
         }
         keySig.layout(currentClef)
     }
@@ -83,9 +90,7 @@ final class CPMeasureLayer : CPLayer {
     
     //TODO: may need to treat clef as a normal glyph as it can be positioned anywhere in the measure
     private func setUpClef(_ clef: CPClefLayer) {
-        if (number != nil && number != 1) { return } //TODO: this probably is not the best way for now, but we need to learn how musicxml handles the redeclaration of clefs etc...
-        
-        
+        if (number != nil && number != 1) { return } //TODO: this probably is not the best way for now, but we need to learn how musicxml handles the redeclaration of clefs etc...                
         //clef.frame.origin.x -= (bounds.size.width)
         
         clef.frame.size.height = frame.size.height * 4

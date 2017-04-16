@@ -10,7 +10,12 @@ import Foundation
 import Cocoa
 
 //TODO: Key changes
+//TODO: octave jumping needs to be handled
 
+// The way key signatures are generated appears to be inherently messy,
+// there is not really much in which this can be implemented in a systematic way.
+// Composers I think draw key signatures based on what looks best and
+// what generally stays within the staff
 
 final class CPKeySignatureLayer : CPLayer, CPGlyphRepresentable {
     
@@ -29,54 +34,64 @@ final class CPKeySignatureLayer : CPLayer, CPGlyphRepresentable {
         super.init(coder: aDecoder)
     }
     
-    // we will need to know the previous key signature for key changes to adjust
-    // TODO: we need to know clef in order to place accidentals accordingly
-    // note: some accidentals will need to drop octaves depending on the clef
-    // i think we can handle this by putting checks in if they are out of the system, if so, adjust the octave
+    // i think this implementation is working, need to handle percussion clefs 8va, etc.. shouldn't be too bad hopefully..
+    //NOTE: non harmonic-clefs should not show a key signature I think,
+    //however finale does by default.. weird
     public func layout(_ clef: CPClefLayer) {
-        //this is where we will set the symbols and their locations based on the number of accidentals
-        if numberOfSharps == 0 { return }
+        if numberOfSharps == 0 ||
+             clef.sign == .tab ||
+             clef.sign == .percussion { return }
         // now that we have an instance of the clef we will do the layout
         // check octave
         let isSharpKey = numberOfSharps > 0
-        let layer = CALayer()
-        layer.backgroundColor = NSColor.cyan.cgColor
-        
         
         let noteHeightSpacing : CGFloat = frame.height / 8
-
-        let transpositionSpacing = clef.getKeySignaturePitchOffsetInWholeTones() * noteHeightSpacing
+        let wholeToneOffset = clef.getKeySignaturePitchOffsetInWholeTones() //will offset the base note based on the clef
+        let transpositionSpacing = wholeToneOffset * noteHeightSpacing //multiple by overall spacing
         
+        var intervalSet = isSharpKey ? [4, -3] : [-4, 3] //the intervals in which the notes will move based on the key type
         
-          // < -- this implementation we will use for determining the ordering of accidentals in the key sig declaration
-        var intervalSet = isSharpKey ? [-3, 4] : [-4, 3]
-        var initialNote = CPPitch(step: .b, octave: 4)
-//        if CPMusicRenderingHelper.yPosition(pitch: initialNote, measureFrame: frame) < 0 {
-//            initialNote.octave += 1
-//        }
-//        
-//        if CPMusicRenderingHelper.yPosition(pitch: initialNote.transposedByWholeToneAmount(intervalSet[1]), measureFrame: frame) + transpositionSpacing >  frame.height {
-//            intervalSet.reverse()
-//        }
+        var initialNote = isSharpKey ? CPPitch(step: .e, octave: 5) : CPPitch(step: .b, octave: 4) // change base pitch if it's sharp or not
+        // determine base pitch
+        if wholeToneOffset < -1 && !isSharpKey { //jump octaves if base pitch is too low
+            
+            initialNote.octave += 1
+            intervalSet.reverse()
+            
+        }else if wholeToneOffset > 1 {
+            
+            if isSharpKey && clef.sign == .alto {
+                initialNote.octave -= 1
+                if wholeToneOffset == 2 {
+                    intervalSet.reverse()
+                }
+            }
+        }
         
+        //now set accidentals
         var xPos : CGFloat = 0
-        
         for var i in 0..<abs(numberOfSharps) {
             let accidental = CPAccidentalLayer(isSharpKey ? .sharp : .flat)
             accidental.frame = CGRect(x: xPos, y: 0, width: frame.width, height: frame.height)
-            //F - flat looks ok in bass clef
-            // however treble clef may want to bring the accidentals
-            // there may be some specific behavior here that is required
-            // not necessarily an accidental that is inside the staff
-            // also TODO: out of bounds if fifths > 7 ( not a high priority obviously )
-                // we need to do this calculation using transposition, it's the only vaiable way I think
-                // we can really do it relative to the previous because of the relationships required...
+            
             if i != 0 {
-                initialNote = initialNote.transposedByWholeToneAmount(intervalSet[i % 2] )
+                initialNote = initialNote.transposedByWholeToneAmount(intervalSet[i % 2]) //move up or down by forth or 5th from previous note
+                //<-- these are all specific cases depending on the clef, it might be better to hard code this later
+                if CPMusicRenderingHelper.yPosition(pitch: initialNote, measureFrame: frame) + transpositionSpacing >=
+                    frame.height * (1 / 2) {
+                    if (clef.sign == .treble &&
+                        (clef.line != 2 || (isSharpKey && i > 2))) ||
+                        (clef.sign == .alto && clef.line != 4 && clef.line != 2 && (i > 2 || !isSharpKey)) ||
+                        clef.sign == .bass ||
+                        (clef.sign == .noClef && i > 3) { //lots of random cases here, key signature drawing makes no sense, i think it actually might be better to hard code all the cases
+                        
+                            initialNote.octave -= 1
+                            intervalSet.reverse()
+                    }
+                }
             }
             
             accidental.frame.origin.y = CPMusicRenderingHelper.yPosition(pitch: initialNote, measureFrame: frame) + transpositionSpacing
-            
             xPos += accidental.glyphRect!.width
             addSublayer(accidental)
         }

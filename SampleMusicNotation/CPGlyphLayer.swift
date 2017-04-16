@@ -17,7 +17,9 @@ class CPGlyphLayer : CPLayer, CPGlyphRepresentable {
     
     public var glyphAsString : String? {
         didSet {
-            setUpAttributes()
+            if oldValue != glyphAsString {
+                setUpAttributes()
+            }
         }
     }
     
@@ -34,8 +36,10 @@ class CPGlyphLayer : CPLayer, CPGlyphRepresentable {
     
     override var frame: CGRect {
         didSet {
-            setUpAttributes()
-            setNeedsDisplay()
+            if oldValue != frame {
+                setUpAttributes()
+                setNeedsDisplay()
+            }
         }
     }
     

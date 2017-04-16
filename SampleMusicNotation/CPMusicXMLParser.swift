@@ -71,7 +71,8 @@ final class CPMusicXMLParser {
     
     private class func parse(clef: XMLIndexer) -> CPClefLayer {
         let aClef = CPClefLayer(CPClefLayerSign(rawValue: clef["sign"].element?.text ?? "g"),
-                                clef["line"].element?.text?.int ?? 0)
+                                clef["line"].element?.text?.int ?? 0,
+                                CPClefLayerSignOctaveOffsetDirection(rawValue: clef["clef-octave-change"].element?.text?.int ?? 0)) //initalizer will fail if 0 is passed
         return aClef
     }
     
@@ -91,6 +92,7 @@ final class CPMusicXMLParser {
     
     private class func parse(pitches: XMLIndexer) -> [CPPitch] {
         var pitchesArr : [CPPitch] = []
+        
         for p in pitches {
             let pitch = CPPitch(step: CPPitchLetter(rawValue: p["step"].element?.text ?? "a"),
                                 octave: (p["octave"].element?.text ?? "4").int)
@@ -100,4 +102,14 @@ final class CPMusicXMLParser {
     }
     
     
+}
+
+
+
+
+
+extension String {
+    subscript(i: Int) -> String {
+        return String(self[index(startIndex, offsetBy: i)])
+    }
 }

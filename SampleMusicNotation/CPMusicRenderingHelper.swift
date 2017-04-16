@@ -23,6 +23,6 @@ final class CPMusicRenderingHelper {
     }
     
     public class func yPosition(_ clef: CPClefLayer, measureFrame frame: CGRect) -> CGFloat {            
-        return -(clef.frame.size.height * 0.5) + (frame.size.height / 4) * CGFloat(clef.line - 1)
+        return -(clef.frame.size.height * 0.5) + (frame.size.height / 4) * CGFloat(clef.line - 1)        
     }
 }

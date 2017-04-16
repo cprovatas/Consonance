@@ -104,7 +104,8 @@
           </time>
           <clef>
               <sign>C</sign>
-              <line>3</line>
+             <line>3</line>
+             <clef-octave-change>1</clef-octave-change>
           </clef>
       </attributes>
       <sound tempo="120"/>

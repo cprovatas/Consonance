@@ -15,8 +15,10 @@ class CPPartLayer : CPLayer {
     public var id : String = "P1"
     public var measures : [CPMeasureLayer] = [] {
         didSet {
-            self.sublayers = nil
-            layoutMeasures()
+            if oldValue != measures {
+                self.sublayers = nil
+                layoutMeasures()
+            }
         }
     }
 
