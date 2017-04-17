@@ -44,6 +44,7 @@ enum CPNoteLayerDurationType : String {
     case quarter = "quarter"
     case eighth = "eighth"
     case sixteenth = "sixteenth"
+    case thirtySecond = "thirtysecond"
     
     public var glyph : String {
         get {
@@ -57,6 +58,8 @@ enum CPNoteLayerDurationType : String {
             case .eighth:
                 return ""
             case .sixteenth:
+                return ""
+            case .thirtySecond:
                 return ""
             }
         }

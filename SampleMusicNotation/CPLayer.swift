@@ -12,8 +12,7 @@ import Cocoa
 class CPLayer : CAShapeLayer {
     
     override init() {
-        super.init()
-        
+        super.init()        
         contentsScale = CPGlobals.contentScaleFactor
         masksToBounds = false
     }        

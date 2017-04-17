@@ -139,7 +139,7 @@ public enum CPClefLayerSignOctaveOffsetDirection: Int {
             return self == .up ? "" : ""
         case .alto:
             return self == .up ? "" : "" //NOTE: alto octave up change, couldn't find glyph for, perhaps is uncommon?
-                                            //finale does not render this attribute
+                                             //finale does not render 8va for alto
         default:
             return ""
         }

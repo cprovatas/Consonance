@@ -23,6 +23,8 @@
 		3EB5B3031E623894008AF4C4 /* bravura_metadata.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5B3021E623894008AF4C4 /* bravura_metadata.json */; };
 		3EB5B3051E6238A7008AF4C4 /* classes.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5B3041E6238A7008AF4C4 /* classes.json */; };
 		3EB5B3071E6238BD008AF4C4 /* glyphnames.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5B3061E6238BD008AF4C4 /* glyphnames.json */; };
+		3EB71DEB1EA43EC9003D7B36 /* CPTimeSignatureLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB71DEA1EA43EC9003D7B36 /* CPTimeSignatureLayer.swift */; };
+		3EB71DED1EA43ED1003D7B36 /* CPTimeSignatureNumberLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB71DEC1EA43ED1003D7B36 /* CPTimeSignatureNumberLayer.swift */; };
 		3EC365261E35853B0017B25E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC365251E35853B0017B25E /* AppDelegate.swift */; };
 		3EC365281E35853B0017B25E /* CPRenderingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC365271E35853B0017B25E /* CPRenderingViewController.swift */; };
 		3EC3652A1E35853B0017B25E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EC365291E35853B0017B25E /* Assets.xcassets */; };
@@ -81,6 +83,8 @@
 		3EB5B3021E623894008AF4C4 /* bravura_metadata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bravura_metadata.json; sourceTree = "<group>"; };
 		3EB5B3041E6238A7008AF4C4 /* classes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = classes.json; sourceTree = "<group>"; };
 		3EB5B3061E6238BD008AF4C4 /* glyphnames.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = glyphnames.json; sourceTree = "<group>"; };
+		3EB71DEA1EA43EC9003D7B36 /* CPTimeSignatureLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPTimeSignatureLayer.swift; sourceTree = "<group>"; };
+		3EB71DEC1EA43ED1003D7B36 /* CPTimeSignatureNumberLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPTimeSignatureNumberLayer.swift; sourceTree = "<group>"; };
 		3EC365221E35853B0017B25E /* Consonance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Consonance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EC365251E35853B0017B25E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3EC365271E35853B0017B25E /* CPRenderingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPRenderingViewController.swift; sourceTree = "<group>"; };
@@ -238,6 +242,15 @@
 			name = Bravura;
 			sourceTree = "<group>";
 		};
+		3EB71DE91EA43929003D7B36 /* CPTimeSignatureLayer */ = {
+			isa = PBXGroup;
+			children = (
+				3EB71DEA1EA43EC9003D7B36 /* CPTimeSignatureLayer.swift */,
+				3EB71DEC1EA43ED1003D7B36 /* CPTimeSignatureNumberLayer.swift */,
+			);
+			name = CPTimeSignatureLayer;
+			sourceTree = "<group>";
+		};
 		3EC365191E35853B0017B25E = {
 			isa = PBXGroup;
 			children = (
@@ -308,16 +321,17 @@
 			isa = PBXGroup;
 			children = (
 				3EDF7F311E80BDA200DF1646 /* CPMusicRenderingHelper.swift */,
+				3EC365551E3585DF0017B25E /* CPNotationRenderManager.swift */,
+				3E42D17C1E6CF69200B10D5C /* CPLayer.swift */,
+				3EB71DE91EA43929003D7B36 /* CPTimeSignatureLayer */,
 				3EDF7F2A1E7F2AB800DF1646 /* CPKeySignatureLayer */,
 				3EAADD981E6E36B500A10CE2 /* CPClefLayer */,
 				3EAADD951E6E35D200A10CE2 /* CPPart */,
 				3EAADD901E6E355F00A10CE2 /* CPNoteLayer */,
-				3E42D17C1E6CF69200B10D5C /* CPLayer.swift */,
 				3E2AA8391E67934F007CEA24 /* CPStem */,
 				3E2000241E6650900093FB86 /* CPMeasure */,
 				3EFAC9531E5E6F7B00CDA40A /* CPFontManager */,
 				3EFAC94C1E5E6DE700CDA40A /* CPGlyph */,
-				3EC365551E3585DF0017B25E /* CPNotationRenderManager.swift */,
 			);
 			name = "Music Rendering";
 			sourceTree = "<group>";
@@ -705,6 +719,7 @@
 				3EAADD9D1E6E399800A10CE2 /* CPMusicXMLParser.swift in Sources */,
 				3EFAC94E1E5E6DFF00CDA40A /* CPGlyphJSONSerialization.swift in Sources */,
 				3E2B70421E381C4100F54AA8 /* CPView.swift in Sources */,
+				3EB71DEB1EA43EC9003D7B36 /* CPTimeSignatureLayer.swift in Sources */,
 				3EDF7F2E1E7F2C9200DF1646 /* CPAccidentalLayer.swift in Sources */,
 				3EDF7F2C1E7F2B2F00DF1646 /* CPKeySignatureLayer.swift in Sources */,
 				3E42D17D1E6CF69200B10D5C /* CPLayer.swift in Sources */,
@@ -716,6 +731,7 @@
 				3EFAC9501E5E6E2C00CDA40A /* CPGlyphAnchorAttributes.swift in Sources */,
 				3EDF7F341E833D4A00DF1646 /* CPDebugger.swift in Sources */,
 				3EAADD921E6E357000A10CE2 /* CPNoteLayer.swift in Sources */,
+				3EB71DED1EA43ED1003D7B36 /* CPTimeSignatureNumberLayer.swift in Sources */,
 				3EB47A7E1E3D31FD000BFC8B /* CPMeasureLayer.swift in Sources */,
 				3E1D391C1E75EDF7004F976D /* CPFlagLayer.swift in Sources */,
 				3EC365261E35853B0017B25E /* AppDelegate.swift in Sources */,
