@@ -42,7 +42,6 @@ class CPGlyphLayer : CPLayer, CPGlyphRepresentable {
             }
         }
     }
-    
      
     convenience init(glyphAsString: String) {
         self.init()
@@ -85,10 +84,6 @@ class CPGlyphLayer : CPLayer, CPGlyphRepresentable {
     
     override func draw(in ctx: CGContext) {
         if glyphs == nil { return }
-        if CPDebugger.enableBorders {
-            borderWidth = 2
-            borderColor = NSColor(calibratedRed: CGFloat(arc4random_uniform(255)) / CGFloat(255), green: CGFloat(arc4random_uniform(255)) / CGFloat(255), blue: CGFloat(arc4random_uniform(255)) / CGFloat(255), alpha: 1).cgColor
-        }
         setUpAttributes()
         ctx.saveGState()
         CTFontDrawGlyphs(newFont, glyphs, pointer, len, ctx)

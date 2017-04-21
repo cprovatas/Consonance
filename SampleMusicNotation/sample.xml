@@ -99,13 +99,12 @@
               <mode>major</mode>
           </key>
           <time>
-              <beats>4</beats>
+              <beats>16</beats>
               <beat-type>4</beat-type>
           </time>
           <clef>
-              <sign>C</sign>
-             <line>3</line>
-             <clef-octave-change>1</clef-octave-change>
+              <sign>F</sign>
+             <line>4</line>         
           </clef>
       </attributes>
       <sound tempo="120"/>

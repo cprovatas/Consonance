@@ -50,18 +50,30 @@ final class CPMusicXMLParser {
             if child.element == nil { continue }
             if child.element!.name.lowercased() == "note" {
                 glyphs.append(parse(note: child, layer))
-            }else if child.element!.name.lowercased() == "attributes" {
-                if child["clef"].element != nil {
-                    glyphs.append(parse(clef: child["clef"]))
-                }
                 
-                if child["key"].element != nil {
-                    glyphs.append(parse(keySignature: child["key"]))
-                }
+            }else if child.element!.name.lowercased() == "attributes" {
+                glyphs.append(contentsOf: parse(measureAttributes: child))
             }
         }
         
         return glyphs
+    }
+    
+    private class func parse(measureAttributes attributes: XMLIndexer) -> [CPLayer] {
+        
+        var tmpAttributesArray : [CPLayer] = []
+        if attributes["clef"].element != nil {
+            tmpAttributesArray.append(parse(clef: attributes["clef"]))
+        }
+        
+        if attributes["key"].element != nil {
+            tmpAttributesArray.append(parse(keySignature: attributes["key"]))
+        }
+        
+        if attributes["time"].element != nil {
+            tmpAttributesArray.append(parse(timeSignature: attributes["time"]))
+        }
+        return tmpAttributesArray
     }
     
     private class func parse(keySignature: XMLIndexer) -> CPKeySignatureLayer {
@@ -70,10 +82,14 @@ final class CPMusicXMLParser {
     }
     
     private class func parse(clef: XMLIndexer) -> CPClefLayer {
-        let aClef = CPClefLayer(CPClefLayerSign(rawValue: clef["sign"].element?.text ?? "g"),
+        return CPClefLayer(CPClefLayerSign(rawValue: clef["sign"].element?.text ?? "g"),
                                 clef["line"].element?.text?.int ?? 0,
                                 CPClefLayerSignOctaveOffsetDirection(rawValue: clef["clef-octave-change"].element?.text?.int ?? 0)) //initalizer will fail if 0 is passed
-        return aClef
+    }
+    
+    private class func parse(timeSignature: XMLIndexer) -> CPTimeSignatureLayer {
+        return CPTimeSignatureLayer(numberOfBeats: timeSignature["beats"].element?.text?.int ?? 4,
+                                    beatType: CPNoteLayerDurationType(rawValue: timeSignature["beat-type"].element?.text?.int ?? 4))
     }
     
     private class func parse(note: XMLIndexer, _ layer: CALayer) -> CPNoteLayer {
@@ -100,12 +116,8 @@ final class CPMusicXMLParser {
         }
         return pitchesArr
     }
-    
-    
+
 }
-
-
-
 
 
 extension String {

@@ -54,6 +54,9 @@ final class CPMeasureLayer : CPLayer {
                 setUpKeySignature(glyph as! CPKeySignatureLayer)
             }
             
+            
+            addSublayer(glyph)
+            
             if glyph is CPGlyphRepresentable { //contains a glyphRect
                 if glyphWidth < (glyph as! CPGlyphRepresentable).glyphRect!.width {
                     let val = (glyph as! CPGlyphRepresentable).glyphRect!.width - glyphWidth
@@ -63,10 +66,7 @@ final class CPMeasureLayer : CPLayer {
                     glyphWidth = 0
                 }
             }
-            
             xPos += glyphWidth
-            addSublayer(glyph)
-                                 
         }
     }
     

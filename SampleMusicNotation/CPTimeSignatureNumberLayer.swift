@@ -11,7 +11,7 @@ import Cocoa
 
 final class CPTimeSignatureNumberLayer : CPGlyphLayer {
     
-    convenience init(_ number: Int) {
+    convenience init(number: Int) {
         self.init()
         if let glyphNum = CPTimeSignatureNumberLayer.glyph(forNumber: number) {
             glyphAsString = glyphNum
@@ -20,8 +20,8 @@ final class CPTimeSignatureNumberLayer : CPGlyphLayer {
     
     private class func glyph(forNumber num: Int) -> String? {
         if num > 10 || num < 0 { return nil }
-        let glyphs : [String] = ["", "", "", "", "", "", "", "", "", ""] // all time sig num glyphs from 0 - 10
-        return glyphs[num - 1]
+        let glyphs : [String] = ["", "", "", "", "", "", "", "", "", ""] // all time sig num glyphs from 0 - 10
+        return glyphs[num]
     }
     
 }

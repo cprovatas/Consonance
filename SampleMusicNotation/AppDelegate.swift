@@ -8,10 +8,9 @@
 
 import Cocoa
 
-@NSApplicationMain
+//@NSApplicationMain
+//where to log entry point for code?
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application

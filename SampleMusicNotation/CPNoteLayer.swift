@@ -32,7 +32,7 @@ class CPNoteLayer : CPGlyphLayer {
         self.noteDuration = noteDuration
         self.voice = voice
         self.durationType = type
-        glyphAsString = type.glyph
+        glyphAsString = type.noteHeadGlyph
         self.stemPosition = stemPosition
     }
 }
@@ -46,7 +46,26 @@ enum CPNoteLayerDurationType : String {
     case sixteenth = "sixteenth"
     case thirtySecond = "thirtysecond"
     
-    public var glyph : String {
+    public var rawValue: Int {
+        get {
+            switch self {
+            case .whole:
+                return 1
+            case .half:
+                return 2
+            case .quarter:
+                return 4
+            case .eighth:
+                return 8
+            case .sixteenth:
+                return 16
+            case .thirtySecond:
+                return 32        
+            }
+        }
+    }
+    
+    public var noteHeadGlyph : String {
         get {
             switch self {
             case .whole:
@@ -93,6 +112,35 @@ enum CPNoteLayerDurationType : String {
             break
         case "sixteenth":
             self = .sixteenth
+            break
+        case "thirtysecond":
+            self = .thirtySecond
+            break
+        default:
+            self = .quarter
+            break
+        }
+    }
+    
+    init(rawValue: Int) {
+        switch rawValue {
+        case 1:
+            self = .whole
+            break
+        case 2:
+            self = .half
+            break
+        case 4:
+            self = .quarter
+            break
+        case 8:
+            self = .eighth
+            break
+        case 16:
+            self = .sixteenth
+            break
+        case 32:
+            self = .thirtySecond
             break
         default:
             self = .quarter
