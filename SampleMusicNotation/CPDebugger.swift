@@ -12,7 +12,7 @@ final class CPDebugger {
     
     public static let enableBorders : Bool = true
             
-    public class func show(_ msg: Any) {
+    public class func show(_ msg: Any...) {
         #if DEBUG
             debugPrint(msg)
         #endif

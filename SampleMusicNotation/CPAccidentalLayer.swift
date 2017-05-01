@@ -11,7 +11,7 @@ import Cocoa
 
 final class CPAccidentalLayer : CPGlyphLayer {
     
-    convenience init(_ type: CPAccidentalLayerType) {        
+    convenience init(type: CPAccidentalLayerType) {        
         self.init()
         glyphAsString = type.glyph
     }

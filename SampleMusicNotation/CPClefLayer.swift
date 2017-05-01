@@ -9,24 +9,54 @@
 import Foundation
 import Cocoa
 
+protocol CPClefRepresentable : Hashable, Equatable {
+    var sign : CPClefLayerSign! { get set }
+    var line : Int { get set }
+    init(line: Int, sign: CPClefLayerSign, octaveOffsetDirection: CPClefLayerSignOctaveOffsetDirection?)
+}
+
+struct CPClef : CPClefRepresentable {
+    
+    var line : Int
+    var sign : CPClefLayerSign!
+    
+    internal init(line: Int, sign: CPClefLayerSign, octaveOffsetDirection: CPClefLayerSignOctaveOffsetDirection?=nil) {
+        self.line = line
+        self.sign = sign
+    }
+}
+
+extension CPClefRepresentable {
+    
+    var hashValue: Int { //hashable default implementation
+        return 0
+    }
+}
+
+func ==<T: CPClefRepresentable>(lhs: T, rhs: T) -> Bool { //Equatable protocol
+    return lhs.line == rhs.line && lhs.sign == rhs.sign
+}
+
+
 fileprivate let clefDefaultLinePositions : [CPClefLayerSign : Int] = [.bass : 4, .treble : 2, .alto : 3] //stored default line values for clefs
-class CPClefLayer : CPGlyphLayer {
+class CPClefLayer : CPGlyphLayer, CPClefRepresentable {
+
     public var sign : CPClefLayerSign!
     //TODO : maybe make this a type later
     //TODO : clef changes
     
     // //normal gclef
-    public var octaveOffset : CPClefLayerSignOctaveOffsetDirection?
+    public var octaveOffsetDirection : CPClefLayerSignOctaveOffsetDirection?
     private var glyph : String {
         get {
-            let hasOctaveOffset = (octaveOffset != nil && (octaveOffset == .up || octaveOffset == .down))
+            let hasOctaveOffset = octaveOffsetDirection != nil
             switch sign! {
             case .treble:
-                return hasOctaveOffset ? octaveOffset!.glyph(forClefLayerSign: sign) : ""
+                return hasOctaveOffset ? octaveOffsetDirection!.glyph(forClefLayerSign: sign) : ""
             case .bass:
-                return hasOctaveOffset ? octaveOffset!.glyph(forClefLayerSign: sign) : ""
+                return hasOctaveOffset ? octaveOffsetDirection!.glyph(forClefLayerSign: sign) : ""
             case .alto:
-                return hasOctaveOffset ? octaveOffset!.glyph(forClefLayerSign: sign) : ""
+                return hasOctaveOffset ? octaveOffsetDirection!.glyph(forClefLayerSign: sign) : ""
             case .percussion: //TODO: percussion glyph is based on <key printObject=NO> element attribute
                 return ""
             case .tab:
@@ -40,11 +70,11 @@ class CPClefLayer : CPGlyphLayer {
     //Note for the future: all clefs are nested in an <attributes> tag, including clef changes 
     public var line : Int = 0
     
-    convenience init(_ sign: CPClefLayerSign, _ line: Int, _ octaveOffset: CPClefLayerSignOctaveOffsetDirection?) {
+    convenience required init(line: Int, sign: CPClefLayerSign, octaveOffsetDirection: CPClefLayerSignOctaveOffsetDirection?=nil) {
         self.init()
         self.sign = sign
         self.line = line
-        self.octaveOffset = octaveOffset
+        self.octaveOffsetDirection = octaveOffsetDirection
         self.glyphAsString = glyph
         self.fontScalingMode = .naturalVerticalPosition        
         
@@ -54,28 +84,6 @@ class CPClefLayer : CPGlyphLayer {
         }else if sign == .tab {
             self.line = 3
         }
-    }
-    
-    public func getKeySignaturePitchOffsetInWholeTones() -> CGFloat {
-        
-        var offset : CGFloat = 0.0
-        if sign == .bass {
-            offset -= 1.0
-        }else if sign == .treble {
-            offset += 1
-        }else if sign == .noClef || //any non-harmonic clef
-                 sign == .tab ||
-                 sign == .percussion {
-            return 1
-        }
-        
-        if line > clefDefaultLinePositions[sign]! {
-            offset += (CGFloat(line) - CGFloat(clefDefaultLinePositions[sign]!)) * 2 //line is based on two whole tones
-        }else if line < clefDefaultLinePositions[sign]! {
-            offset -= (CGFloat(clefDefaultLinePositions[sign]!) - CGFloat(line)) * 2  //line is based on two whole tones
-        }
-        
-        return offset
     }
 }
 

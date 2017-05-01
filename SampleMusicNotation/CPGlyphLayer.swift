@@ -17,17 +17,17 @@ class CPGlyphLayer : CPLayer, CPGlyphRepresentable {
     
     public var glyphAsString : String? {
         didSet {
-            if oldValue != glyphAsString {
-                setUpAttributes()
+            if oldValue != glyphAsString
+                && superlayer != nil {
+                    forceInvokeDrawInCtx()
             }
         }
     }
     
-    
     public var anchorAttributes : CPGlyphAnchorAttributes?
     public var glyphName : String?
     public var fontSize : CGFloat?
-    public var glyphRect : CGRect?    
+    public var glyphRect : CGRect?
     public var fontScalingMode : CPGlyphLayerFontScalingMode! = .centeredVerticallyAndScaled
     private var newFont : NSFont!
     private var glyphs : UnsafeMutablePointer<CGGlyph>!
@@ -36,22 +36,29 @@ class CPGlyphLayer : CPLayer, CPGlyphRepresentable {
     
     override var frame: CGRect {
         didSet {
-            if oldValue != frame {
-                setUpAttributes()
-                setNeedsDisplay()
+            if oldValue != frame //&& glyphRect == nil {
+            {
+                forceInvokeDrawInCtx()
             }
         }
     }
+    
+    private var didSetUp : Bool = false
      
     convenience init(glyphAsString: String) {
         self.init()
         self.glyphAsString = glyphAsString
-        setNeedsDisplay()
+    }
+    
+    override func didMoveToSuperlayer() {
+        super.didMoveToSuperlayer()
+        forceInvokeDrawInCtx()
     }
     
     private func setUpAttributes() {
         
-        if glyphAsString == nil { return }
+        if glyphAsString == nil || didSetUp { return }
+      // didSetUp = true
         
         contentsScale = CPGlobals.contentScaleFactor
         masksToBounds = false
@@ -69,27 +76,26 @@ class CPGlyphLayer : CPLayer, CPGlyphRepresentable {
         
         self.fontSize = newFont.pointSize
         let glyphRect = CTFontGetBoundingRectsForGlyphs(newFont, .horizontal, glyphs, characterFrames, len)
-        let newRect = fontScalingMode == .naturalVerticalPosition ?
+        var newRect = fontScalingMode == .naturalVerticalPosition ?
             CTFontGetBoundingBox(newFont as CTFont) :
             glyphRect
+        newRect = CGRect(x: 0, y: 0, width: newRect.width, height: newRect.height)
         
-      
         //#MARK - convert to our coordinate space
         let points = [CGPoint(x: (frame.size.width * 0.5) - glyphRect.width * 0.5, y: (frame.size.height * 0.5) - (newRect.height * 0.5) - newRect.origin.y)]
         self.glyphRect = CGRect(origin: points.first!, size: glyphRect.size)
                 
         let rawPointer = UnsafeRawPointer(points)
         pointer = rawPointer.assumingMemoryBound(to: CGPoint.self)
+
     }
     
     override func draw(in ctx: CGContext) {
-        if glyphs == nil { return }
         setUpAttributes()
         ctx.saveGState()
         CTFontDrawGlyphs(newFont, glyphs, pointer, len, ctx)
-        ctx.restoreGState()        
+        ctx.restoreGState()
     }
-    
     
     private func setGlyphs(_ glyph: CGGlyph) {
         guard let fontName = CPFontManager.currentFont.familyName else {
@@ -107,8 +113,8 @@ class CPGlyphLayer : CPLayer, CPGlyphRepresentable {
             return
         }
         
-        self.glyphName = CPGlyphJSONSerialization.getFormattedGlyphName(forUnicodeGlyphName: name)
-        self.anchorAttributes = CPGlyphJSONSerialization.getGlyphAnchorAttributes(fromFormattedGlyphName: self.glyphName!)
+     //   self.glyphName = CPGlyphJSONSerialization.getFormattedGlyphName(forUnicodeGlyphName: name)
+     //   self.anchorAttributes = CPGlyphJSONSerialization.getGlyphAnchorAttributes(fromFormattedGlyphName: self.glyphName!)
     }
     
     private func getFontSize(toFitRect rect: CGRect, fromGlyphRectWhereFontSizeEqualsOne glyphRect: CGRect) -> CGFloat {

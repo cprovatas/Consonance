@@ -43,8 +43,8 @@ final class CPTimeSignatureLayer : CPLayer, CPGlyphRepresentable {
         let rect = CGRect(x: 0, y: -(frame.height * 0.25), width: 75, height: frame.height)
         denominator.frame = rect
         numeratorLayer.frame = CGRect(x: 0, y: frame.height * 0.25, width: numeratorLayer.frame.width, height: frame.height)
-        addSublayer(numeratorLayer)
-       // addSublayer(denominator)
+        //addSublayer(numeratorLayer)
+        addSublayer(denominator)
     }
     
     private class func createDigitLayer(forInt int: Int, superlayerFrame frame: CGRect) -> CPLayer {
@@ -55,9 +55,9 @@ final class CPTimeSignatureLayer : CPLayer, CPGlyphRepresentable {
         for digit in numeratorDigits {
             let glyphNum = CPTimeSignatureNumberLayer(number: digit)
             glyphNum.frame = CGRect(x: xPos, y: 0, width: 100, height: frame.height)
-            glyphNum.frame.size.width = glyphNum.glyphRect!.width
-            xPos += glyphNum.frame.width
             containerLayer.addSublayer(glyphNum)
+            glyphNum.frame.size.width = glyphNum.glyphRect!.width
+            xPos += glyphNum.frame.width            
         }
         containerLayer.frame.size.width = CGFloat(numeratorDigits.last ?? 0)
         return containerLayer

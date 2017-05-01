@@ -82,9 +82,9 @@ final class CPMusicXMLParser {
     }
     
     private class func parse(clef: XMLIndexer) -> CPClefLayer {
-        return CPClefLayer(CPClefLayerSign(rawValue: clef["sign"].element?.text ?? "g"),
-                                clef["line"].element?.text?.int ?? 0,
-                                CPClefLayerSignOctaveOffsetDirection(rawValue: clef["clef-octave-change"].element?.text?.int ?? 0)) //initalizer will fail if 0 is passed
+        return CPClefLayer(line: clef["line"].element?.text?.int ?? 0,
+                           sign: CPClefLayerSign(rawValue: clef["sign"].element?.text ?? "g"),
+                           octaveOffsetDirection: CPClefLayerSignOctaveOffsetDirection(rawValue: clef["clef-octave-change"].element?.text?.int ?? 0)) //initalizer will fail if 0 is passed
     }
     
     private class func parse(timeSignature: XMLIndexer) -> CPTimeSignatureLayer {

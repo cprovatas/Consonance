@@ -35,14 +35,13 @@ final class CPMeasureLayer : CPLayer {
         if frame.height == 0 || frame.width == 0 || glyphs.count == 0 { return }
         
         var xPos : CGFloat = 0
-        for var i in 0..<glyphs.count {
+        for i in 0..<glyphs.count {
             let glyph = glyphs[i]
             
             var glyphWidth = (frame.width - xPos) / CGFloat(glyphs.count - i)
             
             glyph.frame = CGRect(x: xPos, y: 0, width: glyphWidth, height: frame.height)
-            
-            //glyph.frame.origin.x += glyph.glyphRect!.width * 0.25           
+                                   
             if glyph is CPNoteLayer {
                 setUpNote(glyph as! CPNoteLayer)
             }else if glyph is CPClefLayer {
@@ -53,7 +52,6 @@ final class CPMeasureLayer : CPLayer {
             }else if glyph is CPKeySignatureLayer {
                 setUpKeySignature(glyph as! CPKeySignatureLayer)
             }
-            
             
             addSublayer(glyph)
             
@@ -72,7 +70,7 @@ final class CPMeasureLayer : CPLayer {
     
     private func setUpKeySignature(_ keySig: CPKeySignatureLayer) {
         if currentClef == nil {
-            currentClef = CPClefLayer(.treble, 4, nil)
+            currentClef = CPClefLayer(line: 4, sign: .treble)
         }
         keySig.layout(currentClef)
     }
@@ -123,9 +121,9 @@ final class CPMeasureLayer : CPLayer {
     
     private func layoutStem(forNote note: CPNoteLayer) {
         
-        let point = CGPoint(x: note.glyphRect!.origin.x + ((note.anchorAttributes!.stemUpSE!.x * note.fontSize!) / 4), y: (note.glyphRect!.origin.y + (note.anchorAttributes!.stemUpSE!.y * note.fontSize!) / 4))
-        note.stem = CPStemLayer(fromPoint: point, toYPosition: point.y + (frame.height / 4) * 3.25)
-        note.addSublayer(note.stem!)
+       // let point = CGPoint(x: note.glyphRect!.origin.x + ((note.anchorAttributes!.stemUpSE!.x * note.fontSize!) / 4), y: (note.glyphRect!.origin.y + (note.anchorAttributes!.stemUpSE!.y * note.fontSize!) / 4))
+       // note.stem = CPStemLayer(fromPoint: point, toYPosition: point.y + (frame.height / 4) * 3.25)
+       // note.addSublayer(note.stem!)
     }
 
     

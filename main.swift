@@ -11,10 +11,11 @@ import Cocoa
 
 
 NSApplicationMain(
-    CommandLine.argc,
-    UnsafeMutableRawPointer(CommandLine.unsafeArgv)
-        .bindMemory(
-            to: UnsafePointer<Int8>.self,
-            capacity: Int(CommandLine.argc))
+        CommandLine.argc,
+        UnsafeMutableRawPointer(CommandLine.unsafeArgv)
+            .bindMemory(
+                to: UnsafePointer<Int8>.self,
+                capacity: Int(CommandLine.argc))
 )
-©˙
+
+

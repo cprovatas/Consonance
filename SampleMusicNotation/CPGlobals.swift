@@ -12,5 +12,11 @@ public struct CPGlobals {
     
     public static var contentScaleFactor : CGFloat = 1.0
     
-    
+}
+
+// Global Functions:
+func logExecutionTime(_ block: () -> Void) {
+    let startTime = CFAbsoluteTimeGetCurrent()
+    block()
+    CPDebugger.show("Method Execution Time: ", CFAbsoluteTimeGetCurrent() - startTime)
 }
