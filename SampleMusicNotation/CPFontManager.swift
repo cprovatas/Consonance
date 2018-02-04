@@ -11,6 +11,7 @@ import Cocoa
 
 class CPFontManager {
     
+    //https://www.smufl.org/fonts/
     public static let currentFont : NSFont = NSFont(name: "Bravura", size: 1)!
     
 }

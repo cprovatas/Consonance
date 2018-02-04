@@ -16,7 +16,7 @@ class CPRenderingViewController: CPViewController {
         super.viewDidLoad()
         let f = renderingView.frame
         
-        let path = Bundle.main.path(forResource: "sample", ofType: "xml")!
+        let path = Bundle.main.path(forResource: "lg-48859162", ofType: "xml")!
         let url = URL(fileURLWithPath: path)
         logExecutionTime {
             CPMusicXMLParser.renderMusic(onRenderingLayer: self.renderingView.layer!, fromURL: url)

@@ -22,7 +22,7 @@ final class CPMusicXMLParser {
     
     private class func parse(parts: XMLIndexer, layer: CALayer) {
         
-        for part in parts {
+        for part in parts.all {
             let tempPart = CPPartLayer(id: part.element?.value(ofAttribute: "id") ?? "P1",
                                        measures: parse(measures: part["measure"], layer), frame: layer.frame)
             
@@ -33,7 +33,7 @@ final class CPMusicXMLParser {
     private class func parse(measures: XMLIndexer, _ layer: CALayer) -> [CPMeasureLayer] {
         var theMeasures : [CPMeasureLayer] = []
         //TODO: other measure formatting stuff :)
-        for measure in measures {
+        for measure in measures.all {
             let aMeasure = CPMeasureLayer()
             aMeasure.glyphs = parseMeasureChildren(measure, layer, aMeasure)
             aMeasure.frame.size.width = (measure.element?.value(ofAttribute: "width") ?? "\(layer.frame.width)").cgFloat
@@ -82,21 +82,21 @@ final class CPMusicXMLParser {
     }
     
     private class func parse(clef: XMLIndexer) -> CPClefLayer {
-        return CPClefLayer(line: clef["line"].element?.text?.int ?? 0,
+        return CPClefLayer(line: clef["line"].element?.text.int ?? 0,
                            sign: CPClefLayerSign(rawValue: clef["sign"].element?.text ?? "g"),
-                           octaveOffsetDirection: CPClefLayerSignOctaveOffsetDirection(rawValue: clef["clef-octave-change"].element?.text?.int ?? 0)) //initalizer will fail if 0 is passed
+                           octaveOffsetDirection: CPClefLayerSignOctaveOffsetDirection(rawValue: clef["clef-octave-change"].element?.text.int ?? 0)) //initalizer will fail if 0 is passed
     }
     
     private class func parse(timeSignature: XMLIndexer) -> CPTimeSignatureLayer {
-        return CPTimeSignatureLayer(numberOfBeats: timeSignature["beats"].element?.text?.int ?? 4,
-                                    beatType: CPNoteLayerDurationType(rawValue: timeSignature["beat-type"].element?.text?.int ?? 4))
+        return CPTimeSignatureLayer(numberOfBeats: timeSignature["beats"].element?.text.int ?? 4,
+                                    beatType: CPNoteLayerDurationType(rawValue: timeSignature["beat-type"].element?.text.int ?? 4))
     }
     
     private class func parse(note: XMLIndexer, _ layer: CALayer) -> CPNoteLayer {
         
         let aNote = CPNoteLayer(pitches: parse(pitches: note["pitch"]),
-                               noteDuration: note["duration"].element?.text?.int ?? 0,
-                               voice: note["voice"].element?.text?.int ?? 0,
+                                noteDuration: note["duration"].element?.text.int ?? 0,
+                                voice: note["voice"].element?.text.int ?? 0,
                                type: CPNoteLayerDurationType(rawValue: note["type"].element?.text ?? "quarter"),
                                stemPosition: CPStemLayerPosition(rawValue: note["position"].element?.text ?? "none"))
         
@@ -109,7 +109,7 @@ final class CPMusicXMLParser {
     private class func parse(pitches: XMLIndexer) -> [CPPitch] {
         var pitchesArr : [CPPitch] = []
         
-        for p in pitches {
+        for p in pitches.all {
             let pitch = CPPitch(step: CPPitchLetter(rawValue: p["step"].element?.text ?? "a"),
                                 octave: (p["octave"].element?.text ?? "4").int)
             pitchesArr.append(pitch)
