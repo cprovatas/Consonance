@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1253CB689B80999B1CAC0023 /* Pods_ConsonanceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F391A494B73ED3E8267404E0 /* Pods_ConsonanceTests.framework */; };
 		3E1D391C1E75EDF7004F976D /* CPFlagLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1D391B1E75EDF7004F976D /* CPFlagLayer.swift */; };
 		3E2000221E6503E60093FB86 /* CPThreadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2000211E6503E60093FB86 /* CPThreadManager.swift */; };
 		3E2AA8381E67932E007CEA24 /* CPStemLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2AA8371E67932E007CEA24 /* CPStemLayer.swift */; };
@@ -30,7 +29,6 @@
 		3EC365281E35853B0017B25E /* CPRenderingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC365271E35853B0017B25E /* CPRenderingViewController.swift */; };
 		3EC3652A1E35853B0017B25E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EC365291E35853B0017B25E /* Assets.xcassets */; };
 		3EC3652D1E35853B0017B25E /* RenderingWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EC3652B1E35853B0017B25E /* RenderingWindow.storyboard */; };
-		3EC365381E35853B0017B25E /* ConsonanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC365371E35853B0017B25E /* ConsonanceTests.swift */; };
 		3EC365431E35853B0017B25E /* ConsonanceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC365421E35853B0017B25E /* ConsonanceUITests.swift */; };
 		3EC365561E3585DF0017B25E /* CPNotationRenderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC365551E3585DF0017B25E /* CPNotationRenderManager.swift */; };
 		3EC3655A1E3586750017B25E /* CPTypeDeclarations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC365591E3586750017B25E /* CPTypeDeclarations.swift */; };
@@ -46,17 +44,11 @@
 		3EFAC9521E5E6E8100CDA40A /* CPGlyphLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFAC9511E5E6E8100CDA40A /* CPGlyphLayer.swift */; };
 		3EFAC9551E5E6F8B00CDA40A /* CPFontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFAC9541E5E6F8B00CDA40A /* CPFontManager.swift */; };
 		49E7A4DB6EFB22A31AB52BB6 /* Pods_ConsonanceUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FC1EE1D3BFAF620BF5E1B27 /* Pods_ConsonanceUITests.framework */; };
+		8327DE622027B3B700AF7892 /* lg-48859162.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8327DE612027B3B600AF7892 /* lg-48859162.xml */; };
 		A2D21D65B7E2CA3B48AE9C05 /* Pods_Consonance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A35C45B6A94E4ACA2CC17E6 /* Pods_Consonance.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3EC365341E35853B0017B25E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3EC3651A1E35853B0017B25E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3EC365211E35853B0017B25E;
-			remoteInfo = SampleMusicNotation;
-		};
 		3EC3653F1E35853B0017B25E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3EC3651A1E35853B0017B25E /* Project object */;
@@ -93,7 +85,6 @@
 		3EC365291E35853B0017B25E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3EC3652C1E35853B0017B25E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RenderingWindow.storyboard; sourceTree = "<group>"; };
 		3EC3652E1E35853B0017B25E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3EC365331E35853B0017B25E /* ConsonanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConsonanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EC365371E35853B0017B25E /* ConsonanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsonanceTests.swift; sourceTree = "<group>"; };
 		3EC365391E35853B0017B25E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3EC3653E1E35853B0017B25E /* ConsonanceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConsonanceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +103,7 @@
 		3EFAC94F1E5E6E2C00CDA40A /* CPGlyphAnchorAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPGlyphAnchorAttributes.swift; sourceTree = "<group>"; };
 		3EFAC9511E5E6E8100CDA40A /* CPGlyphLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPGlyphLayer.swift; sourceTree = "<group>"; };
 		3EFAC9541E5E6F8B00CDA40A /* CPFontManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPFontManager.swift; sourceTree = "<group>"; };
+		8327DE612027B3B600AF7892 /* lg-48859162.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "lg-48859162.xml"; sourceTree = "<group>"; };
 		85495E0508C3B0F70384F2AE /* Pods-ConsonanceUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsonanceUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConsonanceUITests/Pods-ConsonanceUITests.release.xcconfig"; sourceTree = "<group>"; };
 		86EDAB82464A40A98765C6B5 /* Pods-Consonance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Consonance.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Consonance/Pods-Consonance.debug.xcconfig"; sourceTree = "<group>"; };
 		8A35C45B6A94E4ACA2CC17E6 /* Pods_Consonance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Consonance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,14 +119,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2D21D65B7E2CA3B48AE9C05 /* Pods_Consonance.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3EC365301E35853B0017B25E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1253CB689B80999B1CAC0023 /* Pods_ConsonanceTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +205,7 @@
 		3EAADD9E1E6E3EA100A10CE2 /* XML */ = {
 			isa = PBXGroup;
 			children = (
+				8327DE612027B3B600AF7892 /* lg-48859162.xml */,
 				3EDF7F2F1E7F4DF300DF1646 /* sample.xml */,
 			);
 			name = XML;
@@ -269,7 +254,6 @@
 			isa = PBXGroup;
 			children = (
 				3EC365221E35853B0017B25E /* Consonance.app */,
-				3EC365331E35853B0017B25E /* ConsonanceTests.xctest */,
 				3EC3653E1E35853B0017B25E /* ConsonanceUITests.xctest */,
 			);
 			name = Products;
@@ -448,27 +432,6 @@
 			productReference = 3EC365221E35853B0017B25E /* Consonance.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3EC365321E35853B0017B25E /* ConsonanceTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3EC3654A1E35853B0017B25E /* Build configuration list for PBXNativeTarget "ConsonanceTests" */;
-			buildPhases = (
-				D73B75B0FDE3F9FFBDCC25DA /* [CP] Check Pods Manifest.lock */,
-				3EC3652F1E35853B0017B25E /* Sources */,
-				3EC365301E35853B0017B25E /* Frameworks */,
-				3EC365311E35853B0017B25E /* Resources */,
-				A896414BD58E2AE58826FA1E /* [CP] Embed Pods Frameworks */,
-				01BEB34F2A9233BBC02AA054 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3EC365351E35853B0017B25E /* PBXTargetDependency */,
-			);
-			name = ConsonanceTests;
-			productName = SampleMusicNotationTests;
-			productReference = 3EC365331E35853B0017B25E /* ConsonanceTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		3EC3653D1E35853B0017B25E /* ConsonanceUITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3EC3654D1E35853B0017B25E /* Build configuration list for PBXNativeTarget "ConsonanceUITests" */;
@@ -505,12 +468,6 @@
 						DevelopmentTeam = WJQ6ARU45L;
 						ProvisioningStyle = Automatic;
 					};
-					3EC365321E35853B0017B25E = {
-						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = WJQ6ARU45L;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 3EC365211E35853B0017B25E;
-					};
 					3EC3653D1E35853B0017B25E = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = WJQ6ARU45L;
@@ -533,7 +490,6 @@
 			projectRoot = "";
 			targets = (
 				3EC365211E35853B0017B25E /* Consonance */,
-				3EC365321E35853B0017B25E /* ConsonanceTests */,
 				3EC3653D1E35853B0017B25E /* ConsonanceUITests */,
 			);
 		};
@@ -550,13 +506,7 @@
 				3EDF7F301E7F4DF300DF1646 /* sample.xml in Resources */,
 				3EB5B3071E6238BD008AF4C4 /* glyphnames.json in Resources */,
 				3EC3652D1E35853B0017B25E /* RenderingWindow.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3EC365311E35853B0017B25E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				8327DE622027B3B700AF7892 /* lg-48859162.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,30 +535,20 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Consonance/Pods-Consonance-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		01BEB34F2A9233BBC02AA054 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ConsonanceTests/Pods-ConsonanceTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		12B73DCC144961207A3EE166 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Consonance/Pods-Consonance-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SWXMLHash/SWXMLHash.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWXMLHash.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -621,13 +561,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ConsonanceUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9CC836D58BD0D12E3E92E1FB /* [CP] Copy Pods Resources */ = {
@@ -643,21 +586,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ConsonanceUITests/Pods-ConsonanceUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A896414BD58E2AE58826FA1E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ConsonanceTests/Pods-ConsonanceTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A9FDBFD8805B4E5BCB173A52 /* [CP] Embed Pods Frameworks */ = {
@@ -681,28 +609,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Consonance-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		D73B75B0FDE3F9FFBDCC25DA /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -744,14 +660,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3EC3652F1E35853B0017B25E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3EC365381E35853B0017B25E /* ConsonanceTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3EC3653A1E35853B0017B25E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -763,11 +671,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3EC365351E35853B0017B25E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3EC365211E35853B0017B25E /* Consonance */;
-			targetProxy = 3EC365341E35853B0017B25E /* PBXContainerItemProxy */;
-		};
 		3EC365401E35853B0017B25E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3EC365211E35853B0017B25E /* Consonance */;
@@ -907,40 +810,6 @@
 			};
 			name = Release;
 		};
-		3EC3654B1E35853B0017B25E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 122AF68C6392F0D7376CC9DA /* Pods-ConsonanceTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = WJQ6ARU45L;
-				INFOPLIST_FILE = SampleMusicNotationTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.charltonprovatas.SampleMusicNotationTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Consonance.app/Contents/MacOS/Consonance";
-			};
-			name = Debug;
-		};
-		3EC3654C1E35853B0017B25E /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A940C4BD6671824E9FDD1EC9 /* Pods-ConsonanceTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = WJQ6ARU45L;
-				INFOPLIST_FILE = SampleMusicNotationTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.charltonprovatas.SampleMusicNotationTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Consonance.app/Contents/MacOS/Consonance";
-			};
-			name = Release;
-		};
 		3EC3654E1E35853B0017B25E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 96837D0910AE544967EDBEC7 /* Pods-ConsonanceUITests.debug.xcconfig */;
@@ -990,15 +859,6 @@
 			buildConfigurations = (
 				3EC365481E35853B0017B25E /* Debug */,
 				3EC365491E35853B0017B25E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3EC3654A1E35853B0017B25E /* Build configuration list for PBXNativeTarget "ConsonanceTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3EC3654B1E35853B0017B25E /* Debug */,
-				3EC3654C1E35853B0017B25E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

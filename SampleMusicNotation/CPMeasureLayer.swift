@@ -56,12 +56,14 @@ final class CPMeasureLayer : CPLayer {
             addSublayer(glyph)
             
             if glyph is CPGlyphRepresentable { //contains a glyphRect
-                if glyphWidth < (glyph as! CPGlyphRepresentable).glyphRect!.width {
-                    let val = (glyph as! CPGlyphRepresentable).glyphRect!.width - glyphWidth
-                    glyph.frame.size.width += val
-                    xPos += val
-                }else if (glyph as! CPGlyphRepresentable).glyphRect!.width == 0 {
-                    glyphWidth = 0
+                if let glyphRect = (glyph as! CPGlyphRepresentable).glyphRect{
+                    if glyphWidth < glyphRect.width {
+                        let val = (glyph as! CPGlyphRepresentable).glyphRect!.width - glyphWidth
+                        glyph.frame.size.width += val
+                        xPos += val
+                    }else if (glyph as! CPGlyphRepresentable).glyphRect!.width == 0 {
+                        glyphWidth = 0
+                    }
                 }
             }
             xPos += glyphWidth
